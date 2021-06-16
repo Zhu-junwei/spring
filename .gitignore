@@ -21,3 +21,5 @@
 /day04_eesy_06tx_anno/target/
 /day04_eesy_07anno_tx_withoutxml/target/
 /day04_eesy_08account_tx/target/
+*.iml
+.idea
