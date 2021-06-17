@@ -12,7 +12,8 @@
 
     <!--配置Dao对象-->
     <bean id="accountDao" class="com.zjw.dao.impl.AccountDaoImpl">
-        <property name="runner" ref="runner" />
+        <!--使用spring 方法注入创建多例的runner-->
+        <lookup-method name="getRunner" bean="runner"/>
     </bean>
 
     <!--配置QueryRunner-->

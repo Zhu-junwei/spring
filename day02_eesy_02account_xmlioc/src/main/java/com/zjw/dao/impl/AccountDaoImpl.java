@@ -17,13 +17,13 @@ public class AccountDaoImpl implements IAccountDao {
 
     private QueryRunner runner;
 
-    public void setRunner(QueryRunner runner) {
-        this.runner = runner;
+    public QueryRunner getRunner() {
+        return runner;
     }
 
     public List<Account> findAllAccount() {
         try {
-            return runner.query("SELECT * FROM account",new BeanListHandler<Account>(Account.class));
+            return getRunner().query("SELECT * FROM account",new BeanListHandler<Account>(Account.class));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -31,7 +31,7 @@ public class AccountDaoImpl implements IAccountDao {
 
     public Account findAccountById(Integer accountId) {
         try {
-            return runner.query("SELECT * FROM account WHERE id=?",new BeanHandler<Account>(Account.class),accountId);
+            return getRunner().query("SELECT * FROM account WHERE id=?",new BeanHandler<Account>(Account.class),accountId);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -39,7 +39,7 @@ public class AccountDaoImpl implements IAccountDao {
 
     public void saveAccount(Account account) {
         try {
-            runner.update("INSERT INTO account(name,money) VALUES(?,?)",account.getName(),account.getMoney());
+            getRunner().update("INSERT INTO account(name,money) VALUES(?,?)",account.getName(),account.getMoney());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -47,7 +47,7 @@ public class AccountDaoImpl implements IAccountDao {
 
     public void updateAccount(Account account) {
         try {
-            runner.update("UPDATE account SET name=?,money=? WHERE id=?",account.getName(),account.getMoney(),account.getId());
+            getRunner().update("UPDATE account SET name=?,money=? WHERE id=?",account.getName(),account.getMoney(),account.getId());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -55,7 +55,7 @@ public class AccountDaoImpl implements IAccountDao {
 
     public void deleteAccount(Integer accountId) {
         try {
-            runner.update("DELETE FROM account WHERE id=?",accountId);
+            getRunner().update("DELETE FROM account WHERE id=?",accountId);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
