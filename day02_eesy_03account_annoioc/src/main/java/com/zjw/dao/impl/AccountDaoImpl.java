@@ -5,7 +5,7 @@ import com.zjw.domain.Account;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
@@ -17,16 +17,21 @@ import java.util.List;
 @Repository("accountDao")
 public class AccountDaoImpl implements IAccountDao {
 
-    private final QueryRunner runner;
+    public QueryRunner runner;
 
-    @Autowired
-    public AccountDaoImpl(QueryRunner runner){
-        this.runner = runner;
+    // 使用Lookup注解，告诉Spring这个方法需要使用查找方法注入
+    // 这里直接使用@Lookup，则Spring将会依据方法返回值
+    // 将它覆盖为一个在Spring容器中获取QueryRunner这个类型的bean的方法
+    // 但是也可以指定需要获取的bean的名字，如：@Lookup("runner")
+    // 此时，名字为runner的bean，类型必须与方法的返回值类型一致
+    @Lookup
+    public QueryRunner getRunner(){
+        return runner;
     }
 
     public List<Account> findAllAccount() {
         try {
-            return runner.query("SELECT * FROM account",new BeanListHandler<Account>(Account.class));
+            return getRunner().query("SELECT * FROM account",new BeanListHandler<Account>(Account.class));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -34,7 +39,7 @@ public class AccountDaoImpl implements IAccountDao {
 
     public Account findAccountById(Integer accountId) {
         try {
-            return runner.query("SELECT * FROM account WHERE id=?",new BeanHandler<Account>(Account.class),accountId);
+            return getRunner().query("SELECT * FROM account WHERE id=?",new BeanHandler<Account>(Account.class),accountId);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -42,7 +47,7 @@ public class AccountDaoImpl implements IAccountDao {
 
     public void saveAccount(Account account) {
         try {
-            runner.update("INSERT INTO account(name,money) VALUES(?,?)",account.getName(),account.getMoney());
+            getRunner().update("INSERT INTO account(name,money) VALUES(?,?)",account.getName(),account.getMoney());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -50,7 +55,7 @@ public class AccountDaoImpl implements IAccountDao {
 
     public void updateAccount(Account account) {
         try {
-            runner.update("UPDATE account SET name=?,money=? WHERE id=?",account.getName(),account.getMoney(),account.getId());
+            getRunner().update("UPDATE account SET name=?,money=? WHERE id=?",account.getName(),account.getMoney(),account.getId());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -58,7 +63,7 @@ public class AccountDaoImpl implements IAccountDao {
 
     public void deleteAccount(Integer accountId) {
         try {
-            runner.update("DELETE FROM account WHERE id=?",accountId);
+            getRunner().update("DELETE FROM account WHERE id=?",accountId);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

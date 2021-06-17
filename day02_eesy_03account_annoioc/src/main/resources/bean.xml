@@ -18,10 +18,10 @@
 
     <!--配置数据源-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/eesy_spring?useSSL=false&amp;serviceTimeZone=Asia/Shanghai"></property>
-        <property name="user" value="root"></property>
-        <property name="password" value="123456"></property>
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/eesy_spring?useSSL=false&amp;serviceTimeZone=Asia/Shanghai"/>
+        <property name="user" value="root"/>
+        <property name="password" value="123456"/>
 
     </bean>
 
