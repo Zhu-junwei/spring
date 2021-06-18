@@ -2,12 +2,10 @@ package com.zjw.test;
 
 import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
-import config.JdbcConfig;
 import config.SpringConfiguration;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
@@ -16,8 +14,11 @@ import java.util.List;
  */
 public class AccountServiceTest {
 
-    @Test
-    public void testFindAll(){
+    public static void main(String[] args) {
+        testFindAll();
+    }
+//    @Test
+    public static void testFindAll(){
         //1、获取容器
 //        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
         ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
