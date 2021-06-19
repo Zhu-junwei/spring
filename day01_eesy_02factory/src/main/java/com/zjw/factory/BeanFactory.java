@@ -27,7 +27,7 @@ public class BeanFactory {
             InputStream in = BeanFactory.class.getClassLoader().getResourceAsStream("bean.properties");
             properties.load(in);
             //实例化容器
-            beans = new HashMap<String, Object>();
+            beans = new HashMap<>();
             //取出配置文件中所有的key
             Enumeration keys = properties.keys();
             //遍历枚举
