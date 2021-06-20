@@ -1,7 +1,5 @@
 package com.zjw;
 
-import com.mysql.cj.jdbc.Driver;
-
 import java.sql.*;
 
 public class JdbcDemo1 {
@@ -11,7 +9,7 @@ public class JdbcDemo1 {
 //        DriverManager.registerDriver(driver);
         Class.forName("com.mysql.cj.jdbc.Driver");
         //获取连接
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/eesy_jdbc?useSSL=false&serverTimezone=Asia/Shanghai", "root", "123456");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/eesy_spring?useSSL=false&serverTimezone=Asia/Shanghai", "root", "123456");
         System.out.println(connection);
         //获取操作数据库的预处理对象
         PreparedStatement ps = connection.prepareCall("SELECT * FROM account");
