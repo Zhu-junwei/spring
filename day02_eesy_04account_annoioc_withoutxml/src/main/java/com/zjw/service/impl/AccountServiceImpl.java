@@ -3,9 +3,9 @@ package com.zjw.service.impl;
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -14,7 +14,7 @@ import java.util.List;
 @Service("accountService")
 public class AccountServiceImpl implements IAccountService {
 
-    @Autowired
+    @Resource
     private IAccountDao accountDao;
 
     public List<Account> findAllAccount() {
