@@ -37,7 +37,7 @@ import org.springframework.context.annotation.*;
  */
 //@Configuration
 @ComponentScan({"com.zjw"})
-@Import(JdbcConfig.class)
+@Import({JdbcConfig.class})
 @PropertySource("classpath:jdbcConfig.properties")
 public class SpringConfiguration {
 
