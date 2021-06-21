@@ -9,13 +9,13 @@
 
 
     <!-- 配置Service -->
-    <bean id="accountService" class="com.itheima.service.impl.AccountServiceImpl">
+    <bean id="accountService" class="com.zjw.service.impl.AccountServiceImpl">
         <!-- 注入dao -->
         <property name="accountDao" ref="accountDao"/>
     </bean>
 
     <!--配置Dao对象-->
-    <bean id="accountDao" class="com.itheima.dao.impl.AccountDaoImpl">
+    <bean id="accountDao" class="com.zjw.dao.impl.AccountDaoImpl">
         <!-- 注入QueryRunner -->
         <property name="runner" ref="runner"/>
         <property name="connectionUtils" ref="connectionUtils"/>
@@ -34,19 +34,19 @@
     </bean>
 
     <!--配置Connection的工具类 ConnectionUtils-->
-    <bean id="connectionUtils" class="com.itheima.utils.ConnectionUtils">
+    <bean id="connectionUtils" class="com.zjw.utils.ConnectionUtils">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <!--配置事务管理器-->
-    <bean id="txManager" class="com.itheima.utils.TransactionManager">
+    <bean id="txManager" class="com.zjw.utils.TransactionManager">
         <property name="connectionUtils" ref="connectionUtils"/>
     </bean>
 
     <!--配置aop-->
     <aop:config>
         <!--配置通用切入点表达式-->
-        <aop:pointcut id="pt1" expression="execution(* com.itheima.service.impl.*.*(..))"/>
+        <aop:pointcut id="pt1" expression="execution(* com.zjw.service.impl.*.*(..))"/>
         <aop:aspect id="txAdvice" ref="txManager">
             <!--配置前置通知，开启事务-->
             <aop:before method="beginTransaction" pointcut-ref="pt1"/>
