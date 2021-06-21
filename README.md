@@ -6,5 +6,5 @@
 
 module前取消IDEA中`Delegate IDE build/rum actions to Maven`配置
 
-![](./img/20210621_232923.png)
+![](img/20210621_232923.png)
 
