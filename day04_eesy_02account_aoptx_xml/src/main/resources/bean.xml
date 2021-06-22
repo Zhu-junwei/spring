@@ -28,9 +28,9 @@
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <!--连接数据库的必备信息-->
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://192.168.234.128:3306/eesy_spring?useSSL=false&amp;serverTimeZone=Asia/Shanghai"/>
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/eesy_spring?useSSL=false&amp;serverTimeZone=Asia/Shanghai"/>
         <property name="user" value="root"/>
-        <property name="password" value="a@123456"/>
+        <property name="password" value="123456"/>
     </bean>
 
     <!--配置Connection的工具类 ConnectionUtils-->

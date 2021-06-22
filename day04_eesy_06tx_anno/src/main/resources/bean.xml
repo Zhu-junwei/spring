@@ -26,9 +26,9 @@
     <!--配置数据源-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://192.168.234.128:3306/eesy_spring?useSSL=false&amp;serviceTimeZone=Asia/Shanghai"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/eesy_spring?useSSL=false&amp;serviceTimeZone=Asia/Shanghai"/>
         <property name="username" value="root"/>
-        <property name="password" value="a@123456"/>
+        <property name="password" value="123456"/>
     </bean>
 
     <!--spring中基于XML的声明式事务控制配置步骤
