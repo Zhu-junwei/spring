@@ -3,7 +3,6 @@ package com.zjw.service.impl;
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +18,6 @@ import javax.annotation.Resource;
 @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)//只读型事务
 public class AccountServiceImpl implements IAccountService {
 
-//    @Autowired
     @Resource
     private IAccountDao accountDao;
 
