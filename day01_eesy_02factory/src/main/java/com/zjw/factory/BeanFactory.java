@@ -29,7 +29,7 @@ public class BeanFactory {
             //实例化容器
             beans = new HashMap<>();
             //取出配置文件中所有的key
-            Enumeration keys = properties.keys();
+            Enumeration<Object> keys = properties.keys();
             //遍历枚举
             while (keys.hasMoreElements()){
                 String key = keys.nextElement().toString();
