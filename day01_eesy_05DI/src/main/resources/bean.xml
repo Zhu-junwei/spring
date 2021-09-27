@@ -67,7 +67,6 @@
         <property name="age" value="18"/>
         <property name="name" value="朱俊伟"/>
         <property name="birthday" ref="now"/>
-        <!--<property name="uuid" ref=""/>-->
     </bean>
 
     <!--复杂类型的注入/集合类型的注入

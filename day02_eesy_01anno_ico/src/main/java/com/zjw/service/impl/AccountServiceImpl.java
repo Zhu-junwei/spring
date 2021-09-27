@@ -1,10 +1,7 @@
 package com.zjw.service.impl;
 
 import com.zjw.dao.IAccountDao;
-import com.zjw.dao.impl.AccountDaoImpl;
 import com.zjw.service.IAccountService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -45,6 +42,9 @@ import javax.annotation.Resource;
  *              可以是变量上，也可以是方法上
  *          细节：
  *              在使用注解注入时，set方法就不是必须的。
+ *          说明：不推荐使用该注解。可以使用构造器注入的方式。
+ *                  https://zhuanlan.zhihu.com/p/92395282
+ *                  https://www.cnblogs.com/lvdeyinBlog/p/15178226.html
  *      @Qualifier
  *          作用：在按照类型注入的基础之上再按照名称注入。它在给类成员注入时不能单独使用。但是在给方法参数注入可以单独使用
  *          属性：
@@ -87,6 +87,9 @@ public class AccountServiceImpl implements IAccountService {
 //    @Autowired
 //    private IAccountDao accountDao ;
 
+    //通过构造器注入
+//    private final IAccountDao accountDao ;
+
 //    @Autowired
 //    @Qualifier("accountDao1")
 //    private IAccountDao accountDao ;
@@ -116,5 +119,12 @@ public class AccountServiceImpl implements IAccountService {
 
     public AccountServiceImpl() {
         System.out.println("AccountServiceImpl构造方法。。。。");
+        this.accountDao = accountDao;
     }
+
+//    @Autowired //此注解可以省略
+//    public AccountServiceImpl(IAccountDao accountDao) {
+//        System.out.println("AccountServiceImpl构造方法。。。。");
+//        this.accountDao = accountDao;
+//    }
 }

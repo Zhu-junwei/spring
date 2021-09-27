@@ -1,12 +1,8 @@
 package com.zjw.ui;
 
 import com.zjw.service.IAccountService;
-import com.zjw.service.impl.AccountServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.Date;
-import java.util.UUID;
 
 /**
  * 模拟一个表现层，用于调用业务层
