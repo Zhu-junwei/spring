@@ -14,7 +14,7 @@ public class JdbcTemplateDem01 {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/eesy_spring?useSSL=false&serviceTimeZone=Asia/Shanghai");
+        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/eesy_spring?useSSL=false&serverTimeZone=Asia/Shanghai");
         dataSource.setUsername("root");
         dataSource.setPassword("123456");
         //1、创建JdbcTemplate对象

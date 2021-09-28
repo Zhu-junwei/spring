@@ -3,6 +3,7 @@ package com.zjw.service.impl;
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -11,11 +12,8 @@ import java.util.List;
  */
 public class AccountServiceImpl implements IAccountService {
 
+    @Setter
     private IAccountDao accountDao;
-
-    public void setAccountDao(IAccountDao accountDao) {
-        this.accountDao = accountDao;
-    }
 
     public List<Account> findAllAccount() {
         return accountDao.findAllAccount();

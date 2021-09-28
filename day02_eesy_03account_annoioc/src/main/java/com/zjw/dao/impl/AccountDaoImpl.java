@@ -31,7 +31,7 @@ public class AccountDaoImpl implements IAccountDao {
 
     public List<Account> findAllAccount() {
         try {
-            return getRunner().query("SELECT * FROM account",new BeanListHandler<Account>(Account.class));
+            return getRunner().query("SELECT * FROM account",new BeanListHandler<>(Account.class));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -39,7 +39,7 @@ public class AccountDaoImpl implements IAccountDao {
 
     public Account findAccountById(Integer accountId) {
         try {
-            return getRunner().query("SELECT * FROM account WHERE id=?",new BeanHandler<Account>(Account.class),accountId);
+            return getRunner().query("SELECT * FROM account WHERE id=?",new BeanHandler<>(Account.class),accountId);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
