@@ -7,9 +7,10 @@ import java.util.*;
 
 /**
  * 账户的业务层实现类
+ * @author 朱俊伟
  */
 @Setter
-public class AccountServiceImpl3 implements IAccountService {
+public class AccountService3Impl implements IAccountService {
 
     private String[] myStrs;
     private List<String> myList;
@@ -21,11 +22,11 @@ public class AccountServiceImpl3 implements IAccountService {
     @Override
     public void saveAccount() {
         System.out.println("accountService中的saveAccount方法执行了");
-        System.out.println(Arrays.toString(myStrs));
-        System.out.println(myList);
-        System.out.println(mySet);
-        System.out.println(myMap);
-        System.out.println(myProps);
+        System.out.println("数组myStrs: " + Arrays.toString(myStrs));
+        System.out.println("List集合myList：" + myList);
+        System.out.println("Set集合：" + mySet);
+        System.out.println("Map集合：" + myMap);
+        System.out.println("Properties：" + myProps);
     }
 
 }

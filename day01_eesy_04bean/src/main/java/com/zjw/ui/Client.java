@@ -1,40 +1,44 @@
 package com.zjw.ui;
 
-import com.zjw.domain.Life;
-import com.zjw.factory.InstanceFactory;
 import com.zjw.service.IAccountService;
-import org.springframework.context.ApplicationContext;
+import com.zjw.service.IAccountServiceOne;
+import com.zjw.service.IAccountServiceThree;
+import com.zjw.service.IAccountServiceTwo;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import sun.misc.GC;
 
 /**
  * 模拟一个表现层，用于调用业务层
+ * @author 朱俊伟
  */
 public class Client {
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args)  {
 
-        //1.获取核心容器对象
         ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
-//        ApplicationContext ac = new FileSystemXmlApplicationContext("D:\\系统文件夹\\桌面\\bean.xml");
 
-        //2.根据id获取Bean对象
+        //对象创建的三种方式一：通过构造方法创建对象
+        IAccountServiceOne accountServiceOne = (IAccountServiceOne) ac.getBean("accountServiceOne");
+        System.out.println(accountServiceOne);
+        accountServiceOne.saveAccount();
+
+        //第二种方式：使用普通工厂中的方法创建对象
+        IAccountServiceTwo accountServiceTwo = ac.getBean("accountServiceTwo",IAccountServiceTwo.class);
+        System.out.println(accountServiceTwo);
+        accountServiceTwo.saveAccount();
+
+        //第二种方式：使用普通工厂中的方法创建对象
+        IAccountServiceThree accountServiceThree= ac.getBean("accountServiceThree", IAccountServiceThree.class);
+        System.out.println(accountServiceThree);
+        accountServiceThree.saveAccount();
+
+        //Bean的生命周期
         IAccountService accountService = (IAccountService) ac.getBean("accountService");
         System.out.println(accountService);
         accountService.saveAccount();
         System.out.println(ac.isSingleton("accountService"));
 
-
-        //我直接实例化工厂
-//        InstanceFactory instanceFactory = new InstanceFactory();
-//        IAccountService service = instanceFactory.getAccountService();
-//        service.saveAccount();
-
-
         ac.close();
+        System.out.println(accountService);
         System.out.println("main 方法结束了。。。。");
 
     }

@@ -3,21 +3,18 @@ package com.zjw.service.impl;
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
+import lombok.Setter;
 
 /**
  * 账户的业务层实现类
  * <p>
  * 事务的控制应该都在业务层
+ * @author 朱俊伟
  */
 public class AccountServiceImpl implements IAccountService {
 
+    @Setter
     private IAccountDao accountDao;
-
-    public void setAccountDao(IAccountDao accountDao) {
-        this.accountDao = accountDao;
-    }
-
-
 
     @Override
     public Account findAccountById(Integer accountId) {

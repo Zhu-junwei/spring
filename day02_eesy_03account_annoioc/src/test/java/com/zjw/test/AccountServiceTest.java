@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * 使用Junit单元测试，测试我们的配置
  */
+
 public class AccountServiceTest {
 
     private  ApplicationContext ac ;
@@ -21,56 +22,59 @@ public class AccountServiceTest {
         ac = new ClassPathXmlApplicationContext("bean.xml");
     }
 
+    /**
+     * 查询所有账户
+     */
     @Test
     public void testFindAll(){
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
-        //执行方法
         List<Account> accountList = accountService.findAllAccount();
-        testFindAccountById();
         for (Account account : accountList) {
             System.out.println(account);
         }
-
     }
 
+    /**
+     * 根据账户id查询账户
+     */
     @Test
     public void testFindAccountById(){
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
         Account account = accountService.findAccountById(1);
         System.out.println(account);
     }
 
+    /**
+     * 新建账户
+     */
     @Test
     public void testSaveAccount(){
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
-
         Account account = new Account();
         account.setId(4);
         account.setName("zzz");
         account.setMoney(9999f);
         accountService.saveAccount(account);
-
     }
 
+    /**
+     * 更新账户信息
+     */
     @Test
     public void testUpdateAccount(){
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
         Account account = accountService.findAccountById(4);
         System.out.println(account);
         account.setMoney(888F);
         accountService.updateAccount(account);
-
     }
 
+    /**
+     * 删除账户
+     */
     @Test
     public void testDeleteAccount(){
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
         accountService.deleteAccount(4);
-
     }
 }

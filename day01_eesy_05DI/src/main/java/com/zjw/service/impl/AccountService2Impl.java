@@ -8,10 +8,11 @@ import java.util.Date;
 
 /**
  * 账户的业务层实现类
+ * @author 朱俊伟
  */
 @Setter
 @ToString
-public class AccountServiceImpl2 implements IAccountService {
+public class AccountService2Impl implements IAccountService {
 
     private String name;
     private Integer age;
@@ -19,7 +20,7 @@ public class AccountServiceImpl2 implements IAccountService {
 
     @Override
     public void saveAccount() {
-        System.out.println("accountService中的saveAccount方法执行了\n"+ this);
+        System.out.println("AccountService2Impl……中的saveAccount方法执行了\n"+ this + "\n");
     }
 
 

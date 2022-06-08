@@ -2,6 +2,7 @@ package com.zjw.service;
 
 /**
  * 账户的业务层接口
+ * @author 朱俊伟
  */
 public interface IAccountService {
 
@@ -18,7 +19,6 @@ public interface IAccountService {
 
     /**
      * 删除账户
-     * @return
      */
-    int deleteAccount();
+    void deleteAccount();
 }

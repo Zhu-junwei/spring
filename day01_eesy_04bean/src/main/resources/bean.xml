@@ -25,16 +25,14 @@
                 session:作用于web应用的请求范围
                 global-session:作用域集群环境的会话范围（全局会话范围），当不是集群环境时，它就是session-->
 
-    <!--<bean id="accountService" class="com.zjw.service.impl.AccountServiceImpl" />-->
-
+    <bean id="accountServiceOne" class="com.zjw.service.impl.AccountServiceOneImpl" />
 
     <!--第二种方式：使用普通工厂中的方法创建对象（使用某个类中的方法创建对象，并存入spring容器）-->
-    <!--<bean id="instanceFactory" class="com.zjw.factory.InstanceFactory"/>
-    <bean id="accountService" factory-bean="instanceFactory" factory-method="getAccountService" />-->
-
+    <bean id="instanceFactory" class="com.zjw.factory.InstanceFactory"/>
+    <bean id="accountServiceTwo" factory-bean="instanceFactory" factory-method="getAccountService" />
 
      <!--第三种方式：使用工厂中的静态方法创建对象（使用某个类中的静态方法创建对象，并存入spring）-->
-    <!--<bean id="accountService" class="com.zjw.factory.StaticFactory" factory-method="getAccountService" />-->
+    <bean id="accountServiceThree" class="com.zjw.factory.StaticFactory" factory-method="getAccountService" />
 
     <!--bean的生命周期
         单例对象
@@ -46,16 +44,17 @@
             出生：当我们使用对象时spring框架为我们创建
             活着：对象只要是在使用过程中就一直活着
             死亡：当对象长时间不用，且没有别的对象引用时，由Java的垃圾回收器回收
-
     -->
     <!--
         init-method:对象创建后执行的方法
-
         destroy-method:对象销毁时执行的方法
             单例对象，容器关闭后执行
             多例模式，java虚拟机决定
+        scope:单例还是多例对象
+            singleton:默认，单例
+            prototype:多例
     -->
     <bean id="accountService" class="com.zjw.service.impl.AccountServiceImpl"
-          init-method="init" destroy-method="destroy" scope="singleton"/>
+          init-method="init" destroy-method="destroy" />
 
 </beans>

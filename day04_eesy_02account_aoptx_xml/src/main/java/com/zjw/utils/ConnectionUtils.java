@@ -1,16 +1,19 @@
 package com.zjw.utils;
 
+import lombok.Setter;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 
+/**
+ * @author 朱俊伟
+ */
 public class ConnectionUtils {
+
     private ThreadLocal<Connection> tl = new ThreadLocal<Connection>();
 
+    @Setter
     private DataSource dataSource;
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
 
     public Connection getThreadConnection(){
         try {

@@ -13,12 +13,12 @@ import javax.annotation.Resource;
  * 账户的业务层实现类
  * <p>
  * 事务的控制应该都在业务层
+ * @author 朱俊伟
  */
 @Service("accountService")
-@Transactional(propagation = Propagation.SUPPORTS,readOnly = true)//只读型事务
+@Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
 public class AccountServiceImpl implements IAccountService {
 
-//    @Autowired
     @Resource
     private IAccountDao accountDao;
 
@@ -27,7 +27,7 @@ public class AccountServiceImpl implements IAccountService {
         return accountDao.findAccountById(accountId);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED,readOnly = false)//只读型事务
+    @Transactional(propagation = Propagation.REQUIRED,readOnly = false)
     @Override
     public void transfer(String sourceName, String targetName, Float money) {
 
@@ -43,7 +43,7 @@ public class AccountServiceImpl implements IAccountService {
         //2.5、更新转出账户
         accountDao.updateAccount(source);
 
-//        int i = 1 / 0;
+        int i = 1 / 0;
 
         //2.6、更新转入账户
         accountDao.updateAccount(target);

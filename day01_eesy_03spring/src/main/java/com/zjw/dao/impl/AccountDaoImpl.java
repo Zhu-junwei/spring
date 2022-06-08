@@ -9,7 +9,7 @@ import com.zjw.dao.IAccountDao;
 public class AccountDaoImpl implements IAccountDao {
 
     public AccountDaoImpl() {
-        System.out.println("AccountDaoImpl创建了。。。");
+        System.out.println("AccountDaoImpl……创建了。。。");
     }
 
     @Override

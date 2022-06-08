@@ -43,7 +43,6 @@
     <bean id="accountService1" class="com.zjw.service.impl.AccountServiceImpl">
         <!--<constructor-arg name="name" value="朱俊伟"/>-->
         <constructor-arg index="0" value="aaa"/>
-
         <constructor-arg name="age" value="25"/>
         <constructor-arg name="birthday" ref="now"/>
     </bean>
@@ -63,7 +62,7 @@
         弊端：
             如果有某些成员必须有值，则获取对象是有可能set方法没有执行
     -->
-    <bean id="accountService2" class="com.zjw.service.impl.AccountServiceImpl2">
+    <bean id="accountService2" class="com.zjw.service.impl.AccountService2Impl">
         <property name="age" value="18"/>
         <property name="name" value="朱俊伟"/>
         <property name="birthday" ref="now"/>
@@ -76,7 +75,7 @@
             map props
         结构相同，标签可以互换
     -->
-    <bean id="accountService3" class="com.zjw.service.impl.AccountServiceImpl3">
+    <bean id="accountService3" class="com.zjw.service.impl.AccountService3Impl">
         <!--给数组[]赋值-->
         <property name="myStrs">
             <set>
@@ -105,9 +104,7 @@
         <property name="myMap">
             <map>
                 <entry key="testA" value="aaa"/>
-                <entry key="testB">
-                    <value>BBB</value>
-                </entry>
+                <entry key="testB" value="BBB"/>
             </map>
         </property>
         <!--Properties集合赋值-->

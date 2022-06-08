@@ -12,15 +12,20 @@ import java.util.Properties;
  */
 public class BeanFactory {
 
-    //定义一个Properties对象
+    /**
+     * 定义一个Properties对象
+     */
     private static Properties properties;
 
-    //定义一个Map，用于存放我们要创建的对象，我们把它称为容器
+    /**
+     * 定义一个Map，用于存放我们要创建的对象，我们把它称为容器
+     */
     private static Map<String,Object> beans;
 
     //使用静态代码块为Properties对象赋值
     static {
         try {
+            System.out.println("初始化容器开始-----");
             //实例化对象
             properties = new Properties();
             //获取properties文件的流对象
@@ -40,6 +45,7 @@ public class BeanFactory {
                 //把key和value存放容器中
                 beans.put(key,value);
             }
+            System.out.println("初始化容器结束-----");
 
         } catch (Exception e) {
             throw new ExceptionInInitializerError("初始化properties失败");

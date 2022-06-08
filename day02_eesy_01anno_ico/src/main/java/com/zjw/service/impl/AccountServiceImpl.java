@@ -10,9 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 
-/**
- * 账户的业务层实现类
- *
+/*
  * 曾经XML的配置
  *   <bean id="accountService" class="com.zjw.service.impl.AccountServiceImpl"
  *      scope="" init-method="" destroy-method="">
@@ -21,6 +19,7 @@ import javax.annotation.Resource;
  *
  *   1、用于创建对象的
  *      他们的作用就和在xml配置文件中的<bean>标签实现的功能是一样的
+ *
  *      @Component:
  *          作用：用于把当前类对象存入spring容器中
  *          属性：
@@ -42,17 +41,17 @@ import javax.annotation.Resource;
  *              可以是变量上，也可以是方法上
  *          细节：
  *              在使用注解注入时，set方法就不是必须的。
- *          说明：不推荐使用该注解。可以使用构造器注入的方式。
+ *          说明：spring 4.0开始就不推荐使用属性注入，改为推荐构造器注入和setter注入
  *                  https://zhuanlan.zhihu.com/p/92395282
  *                  https://www.cnblogs.com/lvdeyinBlog/p/15178226.html
  *      @Qualifier
- *          作用：在按照类型注入的基础之上再按照名称注入。它在给类成员注入时不能单独使用。但是在给方法参数注入可以单独使用
+ *          作用：在按照类型注入的基础之上再按照名称注入。它在给类成员注入时不能单独使用，配合@Autowired使用。但是在给方法参数注入可以单独使用
  *          属性：
  *              value：用于指定注入bean的id
  *      @Resource
  *          作用：直接按照bean的id注入。它可以单独使用
- *              如果没有指定name属性，当注解写在字段上时，默认取字段名进行按照名称查找。
- *              需要注意的是，如果name属性一旦指定，就只会按照名称进行装配。
+ *              如果没有指定name属性，当注解写在字段上时，默认取属性名进行按照名称查找，如果按照属性名称没有找到则按照属性类型查找。
+ *              如果指定name，就只会按照名称进行装配。
  *              如果注解写在setter方法上默认取属性名进行装配。
  *          属性：
  *              name:用于指定bean的id
@@ -79,7 +78,10 @@ import javax.annotation.Resource;
  *
  *
  */
-//@Component(value = "accountService")
+/**
+ * 账户的业务层实现类
+ * @author 朱俊伟
+ */
 @Component("accountService")
 @Scope(value = "singleton")
 public class AccountServiceImpl implements IAccountService {
@@ -94,8 +96,8 @@ public class AccountServiceImpl implements IAccountService {
 //    @Qualifier("accountDao1")
 //    private IAccountDao accountDao ;
 
-//    @Resource
-    @Resource(name = "accountDao1")
+    @Resource
+//    @Resource(name = "accountDao1")
     private IAccountDao accountDao ;
 
 
@@ -103,23 +105,24 @@ public class AccountServiceImpl implements IAccountService {
     private String name ;
 
 
+    @Override
     public void saveAccount() {
         accountDao.saveAccount();
     }
 
     @PostConstruct
     public void init(){
-        System.out.println("init方法执行了");
+        System.out.println("AccountServiceImpl……init方法执行了");
     }
 
     @PreDestroy
     public void destroy(){
-        System.out.println("destroy方法执行了");
+        System.out.println("AccountServiceImpl……destroy方法执行了");
     }
 
     public AccountServiceImpl() {
         System.out.println("AccountServiceImpl构造方法。。。。");
-        this.accountDao = accountDao;
+//        this.accountDao = accountDao;
     }
 
 //    @Autowired //此注解可以省略

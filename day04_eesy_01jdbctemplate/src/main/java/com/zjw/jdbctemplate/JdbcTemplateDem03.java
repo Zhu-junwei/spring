@@ -9,11 +9,11 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * JdbcTemplate的CRUD操作
  *
+ * @author 朱俊伟
  */
 public class JdbcTemplateDem03 {
     public static void main(String[] args) {
@@ -31,15 +31,16 @@ public class JdbcTemplateDem03 {
         //删除
 //        jdbcTemplate.update("DELETE FROM account WHERE id =? ",8);
         //查询所有
-        List<Account> accounts = jdbcTemplate.query("SELECT * FROM account WHERE money>?", new AccountRowMapper(), 1000f);
+//        List<Account> accounts = jdbcTemplate.query("SELECT * FROM account WHERE money>?", new AccountRowMapper(), 1000f);
         //Spring 提供的封装BeanPropertyRowMapper
-//        List<Account> accounts = jdbcTemplate.query("SELECT * FROM account WHERE money>?", new BeanPropertyRowMapper<Account>(Account.class), 1000f);
-        for (Account account : accounts){
-            System.out.println(account);
-        }
+//        List<Account> accounts = jdbcTemplate.query("SELECT * FROM account WHERE money > ?", new BeanPropertyRowMapper<>(Account.class), 1000f);
+//        List<Account> accounts = jdbcTemplate.query("SELECT * FROM account", new BeanPropertyRowMapper<>(Account.class));
+//        for (Account account : accounts){
+//            System.out.println(account);
+//        }
 
         //查询一个
-//        List<Account> accounts = jdbcTemplate.query("SELECT * FROM account WHERE id=?", new BeanPropertyRowMapper<Account>(Account.class), 1);
+//        List<Account> accounts = jdbcTemplate.query("SELECT * FROM account WHERE id=?", new BeanPropertyRowMapper<>(Account.class), 1);
 //        System.out.println(accounts.isEmpty()?"没有内容":accounts.get(0));
         //查询返回一行一列（使用聚合函数，但不加group by子句）
 //        Long count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM account WHERE money>?", Long.class, 1000f);

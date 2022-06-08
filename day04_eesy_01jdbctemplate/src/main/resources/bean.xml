@@ -5,14 +5,13 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--配置账户的持久层-->
-    <!--<bean id="accountDao" class="com.zjw.dao.impl.AccountDaoImpl2">
-        &lt;!&ndash;<property name="jdbcTemplate" ref="jdbcTemplate" />&ndash;&gt;
+    <bean id="accountDao2" class="com.zjw.dao.impl.AccountDaoImpl2">
+        <!--<property name="jdbcTemplate" ref="jdbcTemplate" />-->
         <property name="dataSource" ref="dataSource"/>
-    </bean>-->
+    </bean>
     <bean id="accountDao" class="com.zjw.dao.impl.AccountDaoImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
-
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
     </bean>

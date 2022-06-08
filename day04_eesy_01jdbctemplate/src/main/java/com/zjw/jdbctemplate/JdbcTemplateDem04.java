@@ -8,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * JdbcTemplate的最基本用法
+ * @author 朱俊伟
  */
 public class JdbcTemplateDem04 {
     public static void main(String[] args) {
@@ -17,7 +18,7 @@ public class JdbcTemplateDem04 {
         IAccountDao accountDao = ac.getBean("accountDao", IAccountDao.class);
         Account account = accountDao.findAccountById(1);
         System.out.println(account);
-        account.setMoney(3000F);
-        accountDao.updateAccount(account);
+//        account.setMoney(3000F);
+//        accountDao.updateAccount(account);
     }
 }

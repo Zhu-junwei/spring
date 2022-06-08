@@ -3,6 +3,7 @@ package com.zjw.service.impl;
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
+import lombok.Setter;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -11,20 +12,15 @@ import org.springframework.transaction.support.TransactionTemplate;
  * 账户的业务层实现类
  * <p>
  * 事务的控制应该都在业务层
+ * @author 朱俊伟
  */
 public class AccountServiceImpl implements IAccountService {
 
+    @Setter
     private IAccountDao accountDao;
 
+    @Setter
     private TransactionTemplate transactionTemplate ;
-
-    public void setAccountDao(IAccountDao accountDao) {
-        this.accountDao = accountDao;
-    }
-
-    public void setTransactionTemplate(TransactionTemplate transactionTemplate) {
-        this.transactionTemplate = transactionTemplate;
-    }
 
     @Override
     public Account findAccountById(Integer accountId) {
@@ -54,7 +50,7 @@ public class AccountServiceImpl implements IAccountService {
                 //2.5、更新转出账户
                 accountDao.updateAccount(source);
 
-//                int i = 1 / 0;
+                int i = 1 / 0;
 
                 //2.6、更新转入账户
                 accountDao.updateAccount(target);

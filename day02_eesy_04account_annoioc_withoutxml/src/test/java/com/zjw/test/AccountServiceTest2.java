@@ -4,15 +4,15 @@ import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * 使用Junit单元测试，测试我们的配置
- * Spring整合junit的配置
+ * Spring整合junit的配置 不用自己实例化容器
  *      1、导入spring整合junit的jar(坐标) spring-test
  *      2、使用Junit提供的一个注解把原有的main方法替换了，替换成spring提供的
  *          @RunWith
@@ -26,51 +26,38 @@ import java.util.List;
 @ContextConfiguration(classes = SpringConfigurationTest.class)
 public class AccountServiceTest2 {
 
-    @Autowired
+    @Resource
     private IAccountService accountService;
 
     @Test
     public void testFindAll(){
-        //1、获取容器
-//        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
-//        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
-        //2、得到业务层对象
-//        IAccountService accountService = ac.getBean("accountService", IAccountService.class);
-
-        //执行方法
         List<Account> accountList = accountService.findAllAccount();
+        accountService.findAccountById(1);
         for (Account account : accountList) {
             System.out.println(account);
         }
-
     }
 
     @Test
     public void testFindAccountById(){
-
         Account account = accountService.findAccountById(1);
         System.out.println(account);
-
     }
 
     @Test
     public void testSaveAccount(){
-
         Account account = new Account();
         account.setName("zaa");
         account.setMoney(9999f);
         accountService.saveAccount(account);
-
     }
 
     @Test
     public void testUpdateAccount(){
-
         Account account = accountService.findAccountById(4);
         System.out.println(account);
         account.setMoney(888F);
         accountService.updateAccount(account);
-
     }
 
     @Test

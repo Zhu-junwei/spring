@@ -5,11 +5,13 @@ import org.springframework.stereotype.Repository;
 
 /**
  * 账户的持久层实现类
+ * @author 朱俊伟
  */
 @Repository("accountDao")
-public class AccountDaoImpl2 implements IAccountDao {
+public class AccountDao2Impl implements IAccountDao {
 
+    @Override
     public void saveAccount() {
-        System.out.println("保存成功222");
+        System.out.println("AccountDao2Impl....保存成功");
     }
 }

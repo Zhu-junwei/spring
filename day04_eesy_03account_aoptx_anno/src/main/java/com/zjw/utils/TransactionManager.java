@@ -1,18 +1,22 @@
 package com.zjw.utils;
 
+import lombok.Setter;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * 和事务管理相关的工具类，它包含了，开启事务，提交事务，回滚事务和释放连接
+ * @author 朱俊伟
  */
 @Component("txManager")
 @Aspect
 public class TransactionManager {
 
-    @Autowired
+    @Setter
+    @Resource
     private ConnectionUtils connectionUtils;
 
     @Pointcut("execution(* com.zjw.service.impl.*.*(..))")

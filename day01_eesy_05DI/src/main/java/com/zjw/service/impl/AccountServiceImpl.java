@@ -1,17 +1,15 @@
 package com.zjw.service.impl;
 
 import com.zjw.service.IAccountService;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * 账户的业务层实现类
+ * @author 朱俊伟
  */
-@Data
-@NoArgsConstructor
+@ToString
 public class AccountServiceImpl implements IAccountService {
 
     private String name;
@@ -31,7 +29,7 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     public void saveAccount() {
-        System.out.println("accountService中的saveAccount方法执行了\n"+this.toString());
+        System.out.println("AccountServiceImpl……中的saveAccount方法执行了\n"+this.toString()+"\n");
     }
 
 }

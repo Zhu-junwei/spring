@@ -1,11 +1,14 @@
 package com.zjw.factory;
 
-import com.zjw.service.IAccountService;
-import com.zjw.service.impl.AccountServiceImpl;
+import com.zjw.service.IAccountServiceTwo;
+import com.zjw.service.impl.AccountServiceTwoImpl;
 
+/**
+ * @author 朱俊伟
+ */
 public class InstanceFactory {
 
-    public IAccountService getAccountService(){
-        return new AccountServiceImpl();
+    public IAccountServiceTwo getAccountService(){
+        return new AccountServiceTwoImpl();
     }
 }

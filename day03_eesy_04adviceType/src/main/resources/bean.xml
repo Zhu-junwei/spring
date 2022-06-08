@@ -30,7 +30,6 @@
             <!--环绕通知-->
             <aop:around method="aroundPrintLog" pointcut-ref="pt1"/>
 
-
             <!--配置切入点表达式 id属性用于指定表达式的唯一表标识。expression属性用于指定表达式的内容
                 此标签写在aop:aspect标签内部只能当前切面使用。
                 它还可以写在aop:aspect标签外面，此时就变成了所有切面可用

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.*;
 /**
  * 该类是一个配置类，他的作用和bean.xml是一样的
  * spring中的新注解
+ * @author 朱俊伟
  * @Configuration
  *      作用：指定当前类是一个配置类
  *      细节：当配置类作为AnnotationConfigApplicationContext对象创建的参数时，该注解可以不写

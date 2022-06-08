@@ -1,20 +1,17 @@
 package com.zjw.dao.impl;
 
+import lombok.Getter;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
+/**
+ * @author 朱俊伟
+ */
 public class JdbcDaoSupport {
 
+    @Getter
     private JdbcTemplate jdbcTemplate ;
-
-    public JdbcTemplate getJdbcTemplate() {
-        return jdbcTemplate;
-    }
-
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     public void setDataSource(DataSource dataSource){
         if (jdbcTemplate == null){
@@ -25,6 +22,5 @@ public class JdbcDaoSupport {
     private JdbcTemplate createJdbcTemplate(DataSource dataSource){
         return new JdbcTemplate(dataSource);
     }
-
 
 }

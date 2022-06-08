@@ -13,18 +13,16 @@ public class Client {
 
         //1.获取核心容器对象
         ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
-//        ApplicationContext ac = new FileSystemXmlApplicationContext("D:\\系统文件夹\\桌面\\bean.xml");
 
-        //2.根据id获取Bean对象
-        System.out.println("*****accountService1*****");
+        System.out.println("*****accountService1……通过构造方法依赖注入*****");
         IAccountService accountService1 = (IAccountService) ac.getBean("accountService1");
         accountService1.saveAccount();
 
-        System.out.println("*****accountService2*****");
+        System.out.println("*****accountService2……通过setter方法依赖注入*****");
         IAccountService accountService2 = (IAccountService) ac.getBean("accountService2");
         accountService2.saveAccount();
 
-        System.out.println("*****accountService3*****");
+        System.out.println("*****accountService3……复杂类型的注入/集合类型的注入*****");
         IAccountService accountService3 = (IAccountService) ac.getBean("accountService3");
         accountService3.saveAccount();
 

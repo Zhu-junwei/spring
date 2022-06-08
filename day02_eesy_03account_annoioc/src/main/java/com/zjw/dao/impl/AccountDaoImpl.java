@@ -13,22 +13,26 @@ import java.util.List;
 
 /**
  * 账户的持久层实现类
+ * @author 朱俊伟
  */
 @Repository("accountDao")
 public class AccountDaoImpl implements IAccountDao {
 
     public QueryRunner runner;
 
-    // 使用Lookup注解，告诉Spring这个方法需要使用查找方法注入
-    // 这里直接使用@Lookup，则Spring将会依据方法返回值
-    // 将它覆盖为一个在Spring容器中获取QueryRunner这个类型的bean的方法
-    // 但是也可以指定需要获取的bean的名字，如：@Lookup("runner")
-    // 此时，名字为runner的bean，类型必须与方法的返回值类型一致
+    /**
+     * 使用Lookup注解，告诉Spring这个方法需要使用查找方法注入
+     * 这里直接使用@Lookup，则Spring将会依据方法返回值
+     * 将它覆盖为一个在Spring容器中获取QueryRunner这个类型的bean的方法
+     * 但是也可以指定需要获取的bean的名字，如：@Lookup("runner")
+     * 此时，名字为runner的bean，类型必须与方法的返回值类型一致
+     */
     @Lookup
     public QueryRunner getRunner(){
         return runner;
     }
 
+    @Override
     public List<Account> findAllAccount() {
         try {
             return getRunner().query("SELECT * FROM account",new BeanListHandler<>(Account.class));
@@ -37,6 +41,7 @@ public class AccountDaoImpl implements IAccountDao {
         }
     }
 
+    @Override
     public Account findAccountById(Integer accountId) {
         try {
             return getRunner().query("SELECT * FROM account WHERE id=?",new BeanHandler<>(Account.class),accountId);
@@ -45,6 +50,7 @@ public class AccountDaoImpl implements IAccountDao {
         }
     }
 
+    @Override
     public void saveAccount(Account account) {
         try {
             getRunner().update("INSERT INTO account(name,money) VALUES(?,?)",account.getName(),account.getMoney());
@@ -53,6 +59,7 @@ public class AccountDaoImpl implements IAccountDao {
         }
     }
 
+    @Override
     public void updateAccount(Account account) {
         try {
             getRunner().update("UPDATE account SET name=?,money=? WHERE id=?",account.getName(),account.getMoney(),account.getId());
@@ -61,6 +68,7 @@ public class AccountDaoImpl implements IAccountDao {
         }
     }
 
+    @Override
     public void deleteAccount(Integer accountId) {
         try {
             getRunner().update("DELETE FROM account WHERE id=?",accountId);

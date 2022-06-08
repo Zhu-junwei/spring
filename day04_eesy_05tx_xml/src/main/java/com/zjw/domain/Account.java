@@ -1,40 +1,31 @@
 package com.zjw.domain;
 
-public class Account {
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.io.Serializable;
+
+/**
+ * 账户的实体类
+ * @author 朱俊伟
+ */
+@Getter @Setter
+@ToString
+public class Account implements Serializable {
+
+    /**
+     * 账户id
+     */
     private Integer id ;
+
+    /**
+     * 账户名称
+     */
     private String name ;
+
+    /**
+     * 账户金额
+     */
     private Float money ;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Float getMoney() {
-        return money;
-    }
-
-    public void setMoney(Float money) {
-        this.money = money;
-    }
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", money=" + money +
-                '}';
-    }
 }

@@ -3,6 +3,7 @@ package com.zjw.service.impl;
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -10,18 +11,15 @@ import java.util.List;
  * 账户的业务层实现类
  * <p>
  * 事务的控制应该都在业务层
+ * @author 朱俊伟
  */
 public class AccountServiceImpl implements IAccountService {
 
+    @Setter
     private IAccountDao accountDao;
-
-    public void setAccountDao(IAccountDao accountDao) {
-        this.accountDao = accountDao;
-    }
 
     @Override
     public List<Account> findAllAccount() {
-
         return accountDao.findAllAccount();
     }
 
@@ -32,22 +30,17 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     public void saveAccount(Account account) {
-
         accountDao.saveAccount(account);
     }
 
     @Override
     public void updateAccount(Account account) {
-
         accountDao.updateAccount(account);
-
     }
 
     @Override
-    public void deleteAccount(Integer acccountId) {
-
-        accountDao.deleteAccount(acccountId);
-
+    public void deleteAccount(Integer accountId) {
+        accountDao.deleteAccount(accountId);
     }
 
     @Override
@@ -66,9 +59,7 @@ public class AccountServiceImpl implements IAccountService {
         accountDao.updateAccount(source);
 
         int i = 1 / 0;
-
         //2.6、更新转入账户
         accountDao.updateAccount(target);
-
     }
 }

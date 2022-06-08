@@ -16,14 +16,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class AccountServiceTest {
 
     @Autowired
-    @Qualifier("accountService_old")
-//    @Qualifier("proxyAccountService")
+//    @Qualifier("accountService_old")
+    @Qualifier("proxyAccountService")
     private IAccountService as;
 
     @Test
     public void testTransfer() {
 
-        as.transfer("aaa", "bbb", 100f);
+        as.transfer("aaa", "bbb", 1f);
 
     }
 }

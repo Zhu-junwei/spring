@@ -12,7 +12,7 @@
 
     <!--配置Dao对象-->
     <bean id="accountDao" class="com.zjw.dao.impl.AccountDaoImpl">
-        <!--使用spring 方法注入创建多例的runner-->
+        <!--使用spring 方法注入创建多例的runner Srping应用了CGLIB（动态代理）-->
         <lookup-method name="getRunner" bean="runner"/>
     </bean>
 
@@ -28,7 +28,6 @@
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/eesy_spring?useSSL=false&amp;serverTimeZone=Asia\Shanghai"/>
         <property name="user" value="root"/>
         <property name="password" value="123456"/>
-
     </bean>
 
 </beans>

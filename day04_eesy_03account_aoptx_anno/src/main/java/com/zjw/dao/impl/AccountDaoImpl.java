@@ -3,29 +3,34 @@ package com.zjw.dao.impl;
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.utils.ConnectionUtils;
+import lombok.Setter;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * 账户的持久层实现类
+ * @author 朱俊伟
  */
 @Repository("accountDao")
 public class AccountDaoImpl implements IAccountDao {
 
-    @Autowired
+    @Setter
+    @Resource
     private QueryRunner runner;
-    @Autowired
+
+    @Setter
+    @Resource
     private ConnectionUtils connectionUtils;
 
     @Override
     public List<Account> findAllAccount() {
         try{
-            return runner.query(connectionUtils.getThreadConnection(),"select * from account",new BeanListHandler<Account>(Account.class));
+            return runner.query(connectionUtils.getThreadConnection(),"select * from account",new BeanListHandler<>(Account.class));
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -34,7 +39,7 @@ public class AccountDaoImpl implements IAccountDao {
     @Override
     public Account findAccountById(Integer accountId) {
         try{
-            return runner.query(connectionUtils.getThreadConnection(),"select * from account where id = ? ",new BeanHandler<Account>(Account.class),accountId);
+            return runner.query(connectionUtils.getThreadConnection(),"select * from account where id = ? ",new BeanHandler<>(Account.class),accountId);
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -70,7 +75,7 @@ public class AccountDaoImpl implements IAccountDao {
     @Override
     public Account findAccountByName(String accountName) {
         try{
-            List<Account> accounts =  runner.query(connectionUtils.getThreadConnection(),"select * from account where name = ? ",new BeanListHandler<Account>(Account.class),accountName);
+            List<Account> accounts =  runner.query(connectionUtils.getThreadConnection(),"select * from account where name = ? ",new BeanListHandler<>(Account.class),accountName);
             if (accounts==null || accounts.size()==0){
                 return null;
             }

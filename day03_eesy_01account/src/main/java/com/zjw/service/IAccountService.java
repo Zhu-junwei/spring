@@ -17,6 +17,7 @@ public interface IAccountService {
 
     /**
      * 查询一个
+     * @param accountId
      * @return
      */
     Account findAccountById(Integer accountId);
@@ -37,7 +38,7 @@ public interface IAccountService {
      * 删除
      * @param acccountId
      */
-    void deleteAccount(Integer acccountId);
+    void deleteAccount(Integer accountId);
 
     /**
      *

@@ -6,13 +6,14 @@ import com.zjw.service.IAccountService;
 
 /**
  * 账户的业务层实现类
+ * @author 朱俊伟
  */
 public class AccountServiceImpl implements IAccountService {
 
     private IAccountDao accountDao = new AccountDaoImpl();
 
     public AccountServiceImpl() {
-        System.out.println("我创建了。。");
+        System.out.println("AccountServiceImpl……我创建了。。");
     }
 
     @Override

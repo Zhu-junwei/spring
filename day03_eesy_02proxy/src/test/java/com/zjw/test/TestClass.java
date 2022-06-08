@@ -18,6 +18,6 @@ public class TestClass {
     @Test
     public void testProxyProducer(){
         IProducer producer = (IProducer) Proxy.newProxyInstance(Producer.class.getClassLoader(), new Class[]{IProducer.class}, new NormalHandler(new Producer()));
-        producer.afterService(100F);
+        producer.saleProduct(100F);
     }
 }

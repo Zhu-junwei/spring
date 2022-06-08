@@ -4,6 +4,7 @@ import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
 import com.zjw.utils.TransactionManager;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -11,20 +12,15 @@ import java.util.List;
  * 账户的业务层实现类
  *
  * 事务的控制应该都在业务层
+ * @author 朱俊伟
  */
 public class AccountServiceImpl_OLD implements IAccountService{
 
+    @Setter
     private IAccountDao accountDao;
 
+    @Setter
     private TransactionManager txManager;
-
-    public void setTxManager(TransactionManager txManager) {
-        this.txManager = txManager;
-    }
-
-    public void setAccountDao(IAccountDao accountDao) {
-        this.accountDao = accountDao;
-    }
 
     @Override
     public List<Account> findAllAccount() {
@@ -37,11 +33,11 @@ public class AccountServiceImpl_OLD implements IAccountService{
             txManager.commit();
             //4、返回结果
             return accounts;
-        }catch (Exception e){
+        } catch (Exception e){
             //5、回滚操作
             txManager.rollback();
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             //6、释放连接
             txManager.release();
         }
@@ -109,12 +105,12 @@ public class AccountServiceImpl_OLD implements IAccountService{
     }
 
     @Override
-    public void deleteAccount(Integer acccountId) {
+    public void deleteAccount(Integer accountId) {
         try {
             //1、开启事务
             txManager.beginTransaction();
             //2、执行操作
-            accountDao.deleteAccount(acccountId);
+            accountDao.deleteAccount(accountId);
             //3、提交事务
             txManager.commit();
         }catch (Exception e){
@@ -144,7 +140,7 @@ public class AccountServiceImpl_OLD implements IAccountService{
             //2.5、更新转出账户
             accountDao.updateAccount(source);
 
-            int i = 1/0 ;
+//            int i = 1/0 ;
 
             //2.6、更新转入账户
             accountDao.updateAccount(target);

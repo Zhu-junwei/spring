@@ -6,9 +6,11 @@ import org.springframework.stereotype.Component;
 
 /**
  * 用于记录日志的工具类，它里面提供了公共的代码
+ * Aspect注解 表示当前类是一个切面类
+ * @author 朱俊伟
  */
 @Component("logger")
-@Aspect //表示当前类是一个切面类
+@Aspect
 public class Logger {
 
     @Pointcut("execution(* com.zjw.service.impl.*.*(..))")
@@ -61,7 +63,8 @@ public class Logger {
         Object rtValue = null;
         try {
             System.out.println("..........前置通知");
-            Object[] args = pjp.getArgs();//得到方法执行所需的参数
+            //得到方法执行所需的参数
+            Object[] args = pjp.getArgs();
             rtValue = pjp.proceed(args);
             System.out.println("..........后置通知");
             return rtValue;

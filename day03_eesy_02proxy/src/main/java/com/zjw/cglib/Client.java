@@ -8,12 +8,13 @@ import java.lang.reflect.Method;
 
 /**
  * 模拟一个消费者
+ * @author 朱俊伟
  */
 public class Client {
     public static void main(String[] args) {
         final Producer producer = new Producer();
 
-        /**
+        /*
          * 动态代理：
          *  特点：字节码随用随创建，随用随加载
          *  作用：不用修改源码的基础上对方法增强
@@ -44,8 +45,9 @@ public class Client {
              * @param args      当前执行方法所需的参数
              * @param methodProxy   当前执行方法的代理对象
              * @return Object 方法的返回值
-             * @throws Throwable
+             * @throws Throwable 抛出了一个异常
              */
+            @Override
             public Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
                 //提供增强的代码
                 Object returnValue ;

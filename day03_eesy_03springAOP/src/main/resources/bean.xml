@@ -9,6 +9,8 @@
 
     <!--配置spring的Ioc，把service对象配置进来-->
     <bean id="accountService" class="com.zjw.service.impl.AccountServiceImpl"/>
+    <!--配置Logger类-->
+    <bean id="logger" class="com.zjw.utils.Logger"/>
 
     <!--spring中基于xml的AOP配置步骤
         1、使用通知Bean也交给spring来管理
@@ -50,9 +52,6 @@
                     切到业务层实现类下的所有方法
                      * com.zjw.service.impl.*.*(..)
     -->
-    <!--配置Logger类-->
-    <bean id="logger" class="com.zjw.utils.Logger"/>
-
     <!--配置AOP-->
     <aop:config>
         <!--配置切面-->

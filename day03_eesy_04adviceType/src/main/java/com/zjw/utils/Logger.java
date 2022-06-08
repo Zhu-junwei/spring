@@ -4,6 +4,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 
 /**
  * 用于记录日志的工具类，它里面提供了公共的代码
+ * @author 朱俊伟
  */
 public class Logger {
 
@@ -46,16 +47,17 @@ public class Logger {
     public Object aroundPrintLog(ProceedingJoinPoint pjp){
         Object rtValue = null;
         try {
-            System.out.println("..........前置通知");
-            Object[] args = pjp.getArgs();//得到方法执行所需的参数
+            System.out.println("环绕通知 .........前置通知");
+            //得到方法执行所需的参数
+            Object[] args = pjp.getArgs();
             rtValue = pjp.proceed(args);
-            System.out.println("..........后置通知");
+            System.out.println("环绕通知 ..........后置通知");
             return rtValue;
         }catch (Throwable t){
-            System.out.println("..........异常通知");
+            System.out.println("环绕通知 ..........异常通知");
             throw new RuntimeException(t);
         }finally {
-            System.out.println("..........最终通知");
+            System.out.println("环绕通知 ..........最终通知");
         }
     }
 

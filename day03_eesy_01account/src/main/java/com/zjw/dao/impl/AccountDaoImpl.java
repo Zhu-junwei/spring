@@ -3,6 +3,7 @@ package com.zjw.dao.impl;
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.utils.ConnectionUtils;
+import lombok.Setter;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -11,19 +12,15 @@ import java.util.List;
 
 /**
  * 账户的持久层实现类
+ * @author 朱俊伟
  */
 public class AccountDaoImpl implements IAccountDao {
 
+    @Setter
     private QueryRunner runner;
+
+    @Setter
     private ConnectionUtils connectionUtils;
-
-    public void setConnectionUtils(ConnectionUtils connectionUtils) {
-        this.connectionUtils = connectionUtils;
-    }
-
-    public void setRunner(QueryRunner runner) {
-        this.runner = runner;
-    }
 
     @Override
     public List<Account> findAllAccount() {
@@ -73,11 +70,11 @@ public class AccountDaoImpl implements IAccountDao {
     @Override
     public Account findAccountByName(String accountName) {
         try{
-            List<Account> accounts =  runner.query(connectionUtils.getThreadConnection(),"select * from account where name = ? ",new BeanListHandler<Account>(Account.class),accountName);
-            if (accounts==null || accounts.size()==0){
+            List<Account> accounts =  runner.query(connectionUtils.getThreadConnection(),"select * from account where name = ? ", new BeanListHandler<>(Account.class),accountName);
+            if (accounts==null || accounts.size()==0) {
                 return null;
             }
-            if (accounts.size() > 1){
+            if (accounts.size() > 1) {
                 throw new RuntimeException("结果集不唯一，数据有问题");
             }
             return accounts.get(0);

@@ -3,25 +3,25 @@ package com.zjw.service.impl;
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * 账户的业务层实现类
  * <p>
  * 事务的控制应该都在业务层
+ * @author 朱俊伟
  */
 @Service("accountService")
 public class AccountServiceImpl implements IAccountService {
 
-    @Autowired
+    @Resource
     private IAccountDao accountDao;
 
     @Override
     public List<Account> findAllAccount() {
-
         return accountDao.findAllAccount();
     }
 
@@ -32,27 +32,22 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     public void saveAccount(Account account) {
-
         accountDao.saveAccount(account);
     }
 
     @Override
     public void updateAccount(Account account) {
-
         accountDao.updateAccount(account);
 
     }
 
     @Override
     public void deleteAccount(Integer acccountId) {
-
         accountDao.deleteAccount(acccountId);
-
     }
 
     @Override
     public void transfer(String sourceName, String targetName, Float money) {
-
         //2、执行操作
         //2.1、根据名称查询转出账户
         Account source = accountDao.findAccountByName(sourceName);
@@ -65,10 +60,9 @@ public class AccountServiceImpl implements IAccountService {
         //2.5、更新转出账户
         accountDao.updateAccount(source);
 
-//        int i = 1 / 0;
+        int i = 1 / 0;
 
         //2.6、更新转入账户
         accountDao.updateAccount(target);
-
     }
 }

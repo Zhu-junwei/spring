@@ -1,16 +1,21 @@
 package com.zjw.utils;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.Connection;
 
+/**
+ * @author 朱俊伟
+ */
 @Component("connectionUtils")
 public class ConnectionUtils {
     private ThreadLocal<Connection> tl = new ThreadLocal<Connection>();
 
-    @Autowired
+    @Setter
+    @Resource
     private DataSource dataSource;
 
     public Connection getThreadConnection(){

@@ -19,64 +19,46 @@ public class AccountServiceTest {
 
     @Before
     public void init(){
-        //1、获取容器
         ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
     }
 
     @Test
     public void testFindAll(){
-
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
-
-        //执行方法
         List<Account> accountList = accountService.findAllAccount();
         for (Account account : accountList) {
             System.out.println(account);
         }
-
     }
 
     @Test
     public void testFindAccountById(){
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
         Account account = accountService.findAccountById(1);
         System.out.println(account);
-
     }
 
     @Test
     public void testSaveAccount(){
-
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
-
         Account account = new Account();
         account.setName("zaa");
         account.setMoney(9999f);
         accountService.saveAccount(account);
-
     }
 
     @Test
     public void testUpdateAccount(){
-
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
         Account account = accountService.findAccountById(4);
         System.out.println(account);
         account.setMoney(888F);
         accountService.updateAccount(account);
-
     }
 
     @Test
     public void testDeleteAccount(){
-
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
         accountService.deleteAccount(4);
-
     }
 }

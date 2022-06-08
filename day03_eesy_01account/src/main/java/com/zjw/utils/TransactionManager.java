@@ -1,15 +1,15 @@
 package com.zjw.utils;
 
+import lombok.Setter;
+
 /**
  * 和事务管理相关的工具类，它包含了，开启事务，提交事务，回滚事务和释放连接
+ * @author 朱俊伟
  */
 public class TransactionManager {
 
+    @Setter
     private ConnectionUtils connectionUtils;
-
-    public void setConnectionUtils(ConnectionUtils connectionUtils) {
-        this.connectionUtils = connectionUtils;
-    }
 
     /**
      * 开启事务

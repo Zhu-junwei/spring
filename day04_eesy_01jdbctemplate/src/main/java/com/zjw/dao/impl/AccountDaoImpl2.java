@@ -6,14 +6,19 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 import java.util.List;
 
+/**
+ * @author 朱俊伟
+ */
 public class AccountDaoImpl2 extends JdbcDaoSupport implements IAccountDao {
 
 
+    @Override
     public Account findAccountById(Integer accountId) {
         List<Account> accounts = getJdbcTemplate().query("SELECT * FROM account WHERE id=?", new BeanPropertyRowMapper<Account>(Account.class),accountId);
         return accounts.isEmpty()?null:accounts.get(0);
     }
 
+    @Override
     public Account findAccountByName(String accountName) {
         List<Account> accounts = getJdbcTemplate().query("SELECT * FROM account WHERE name=?", new BeanPropertyRowMapper<Account>(Account.class),accountName);
         if (accounts.isEmpty()){
@@ -25,6 +30,7 @@ public class AccountDaoImpl2 extends JdbcDaoSupport implements IAccountDao {
         return accounts.get(0);
     }
 
+    @Override
     public void updateAccount(Account account) {
         getJdbcTemplate().update("UPDATE account SET name=?,money=? WHERE id=?",account.getName(),account.getMoney(),account.getId());
     }

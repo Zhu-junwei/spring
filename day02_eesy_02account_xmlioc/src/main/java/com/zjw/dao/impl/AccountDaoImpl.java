@@ -12,12 +12,14 @@ import java.util.List;
 
 /**
  * 账户的持久层实现类
+ * @author 朱俊伟
  */
 public class AccountDaoImpl implements IAccountDao {
 
     @Getter
     private QueryRunner runner;
 
+    @Override
     public List<Account> findAllAccount() {
         try {
             return getRunner().query("SELECT * FROM account",new BeanListHandler<>(Account.class));
@@ -26,6 +28,7 @@ public class AccountDaoImpl implements IAccountDao {
         }
     }
 
+    @Override
     public Account findAccountById(Integer accountId) {
         try {
             return getRunner().query("SELECT * FROM account WHERE id=?",new BeanHandler<>(Account.class),accountId);
@@ -34,6 +37,7 @@ public class AccountDaoImpl implements IAccountDao {
         }
     }
 
+    @Override
     public void saveAccount(Account account) {
         try {
             getRunner().update("INSERT INTO account(name,money) VALUES(?,?)",account.getName(),account.getMoney());
@@ -42,6 +46,7 @@ public class AccountDaoImpl implements IAccountDao {
         }
     }
 
+    @Override
     public void updateAccount(Account account) {
         try {
             getRunner().update("UPDATE account SET name=?,money=? WHERE id=?",account.getName(),account.getMoney(),account.getId());
@@ -50,6 +55,7 @@ public class AccountDaoImpl implements IAccountDao {
         }
     }
 
+    @Override
     public void deleteAccount(Integer accountId) {
         try {
             getRunner().update("DELETE FROM account WHERE id=?",accountId);

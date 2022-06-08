@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * 账户的业务层接口
+ * @author 朱俊伟
  */
 public interface IAccountService {
 
@@ -17,13 +18,11 @@ public interface IAccountService {
 
     /**
      * 查询一个
-     * @return
      */
     Account findAccountById(Integer accountId);
 
     /**
      * 保存
-     * @param account
      */
     void saveAccount(Account account);
 

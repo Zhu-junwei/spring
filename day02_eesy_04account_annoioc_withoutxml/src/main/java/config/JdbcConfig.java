@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Scope;
 
 import javax.sql.DataSource;
 
+/**
+ * @author 朱俊伟
+ */
 public class JdbcConfig {
 
     @Value("${jdbc.driver}")
@@ -30,7 +33,7 @@ public class JdbcConfig {
      */
     @Bean(name = "runner")
     @Scope(value = "prototype")
-    public QueryRunner createQueryRunner(@Qualifier("dataSource2") DataSource dataSource){
+    public QueryRunner createQueryRunner(@Qualifier("dataSource") DataSource dataSource){
         return new QueryRunner(dataSource);
     }
 
@@ -40,24 +43,6 @@ public class JdbcConfig {
      */
     @Bean("dataSource")
     public DataSource createDataSource(){
-        try {
-            ComboPooledDataSource ds = new ComboPooledDataSource();
-            ds.setDriverClass(driver);
-            ds.setJdbcUrl(url);
-            ds.setUser(username);
-            ds.setPassword(password);
-            return ds;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Bean("dataSource2")
-    public DataSource createDataSource2(){
         try {
             ComboPooledDataSource ds = new ComboPooledDataSource();
             ds.setDriverClass(driver);

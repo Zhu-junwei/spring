@@ -1,15 +1,11 @@
 package com.zjw.ui;
 
-import com.zjw.dao.IAccountDao;
 import com.zjw.dao.impl.AccountDaoImpl;
 import com.zjw.service.IAccountService;
-import com.zjw.service.impl.AccountServiceImpl;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
@@ -29,12 +25,10 @@ public class Client {
      *
      *  核心容器的两个接口引发出的问题：
      *  ApplicationContext: 单例对象适用 采用此接口
-     *      它在构建核心容器时，创建对象采取的策略是立即加载的方式。也就是说，只要一读取往配置文件马上就创建配置为文件中的对象。
+     *      它在构建核心容器时，创建对象采取的策略是单例对象立即加载的方式。也就是说，只要一读取往配置文件马上就创建配置为文件中的对象。
      *
      *  BeanFactory: 多例对象适用
      *      它在构建核心容器时，创建对象采取的策略时延迟加载的方式。也就是说，什么时候根据id获取对象了，什么时候才真正的创建对象。
-     *
-     * @param args
      */
     public static void main(String[] args) {
 
@@ -43,7 +37,7 @@ public class Client {
 
         //1.获取核心容器对象
         ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
-//        ApplicationContext ac = new FileSystemXmlApplicationContext("D:\\系统文件夹\\桌面\\bean.xml");
+//        ApplicationContext ac = new FileSystemXmlApplicationContext("D:/系统文件夹/桌面/bean.xml");
 
         //2.根据id获取Bean对象
         IAccountService accountService = (IAccountService) ac.getBean("accountService");
@@ -51,6 +45,7 @@ public class Client {
         System.out.println(accountService);
         System.out.println(accountService2);
 
+        //accountDao是单例模式，两个对象一样
         AccountDaoImpl accountDao = ac.getBean("accountDao", AccountDaoImpl.class);
         AccountDaoImpl accountDao2 = ac.getBean("accountDao", AccountDaoImpl.class);
         System.out.println(accountDao);

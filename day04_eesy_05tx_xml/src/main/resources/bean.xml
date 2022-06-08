@@ -41,7 +41,6 @@
         4、建立事务通知和切入点表达式的对应关系
         5、配置事务的属性
             是在事务的通知tx:advice标签的内部
-
     -->
     <!--配置事务管理器-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -52,13 +51,17 @@
         <tx:attributes>
             <!--配置事务的属性
                 isolation：用于指定事务的隔离级别。默认值时DEFAULT，表示使用数据库的默认隔离级别。
-                propagation：用于指定事务的传播行为。默认值时REQUIRED,表示一定会有事务，增删改的选择。查询方法可以选择SUPPORTS.
+                propagation：用于指定事务的传播行为。
+                            REQUIRED,默认值，表示一定会有事务，增删改的选择。
+                            SUPPORTS 如果当前环境有事务，就加入到当前事务；如果没有事务，就以非事务的方式执行。查询方法可以选择SUPPORTS.
                 read-only：用于指定事务是否只读。只用查询方法才能设置为true.默认值为false,表示读写。
                 timeout：用于指定事务的超时时间，默认值是-1,表示永不超时。如果指定了数值，以秒为单位。
                 rollback-for：用于指定一个异常，当产生该异常时，事务回滚，产生其他异常时，事务不回滚。没有默认值。表示任何异常都回滚。
                 no-rollback-for：用于指定一个异常，当产生该异常时，事务不回滚，产生其他异常时，事务回滚。没有默认值。表示任何异常都回滚。
             -->
-            <tx:method name="*" propagation="REQUIRED" read-only="false"/>
+            <!--使用数据库的隔离级别，一定有事务，事务读写，事务永不超时，任何异常都回滚-->
+            <tx:method name="*"/>
+            <!--使用数据库的隔离级别，一定有事务，事务读写，事务永不超时，任何异常都回滚-->
             <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
         </tx:attributes>
     </tx:advice>

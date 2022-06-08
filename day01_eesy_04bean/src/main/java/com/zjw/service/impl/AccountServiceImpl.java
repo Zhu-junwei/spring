@@ -4,23 +4,25 @@ import com.zjw.service.IAccountService;
 
 /**
  * 账户的业务层实现类
+ * @author 朱俊伟
  */
 public class AccountServiceImpl implements IAccountService {
 
 
     public AccountServiceImpl() {
-        System.out.println("我创建了。。");
+        System.out.println("AccountServiceImpl……我创建了。。");
     }
 
+    @Override
     public void saveAccount() {
-        System.out.println("accountService中的saveAccount方法执行了");
+        System.out.println("AccountServiceImpl……saveAccount方法执行了");
     }
 
     public void init(){
-        System.out.println("init方法执行了。。");
+        System.out.println("AccountServiceImpl……init方法执行了。。");
     }
 
     public void destroy(){
-        System.out.println("destroy方法执行了。。");
+        System.out.println("AccountServiceImpl……destroy方法执行了。。");
     }
 }

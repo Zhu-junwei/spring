@@ -4,7 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
     <!--配置业务层-->
     <bean id="accountService" class="com.zjw.service.impl.AccountServiceImpl">
         <property name="accountDao" ref="accountDao"/>

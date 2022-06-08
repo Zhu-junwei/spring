@@ -22,7 +22,6 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-
     <!--配置数据源-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
@@ -41,8 +40,9 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!--开启spring对注解事务的支持-->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
+    <!--开启spring对注解事务的支持
+        transaction-manager="transactionManager" 默认
+    -->
+    <tx:annotation-driven/>
 
 </beans>

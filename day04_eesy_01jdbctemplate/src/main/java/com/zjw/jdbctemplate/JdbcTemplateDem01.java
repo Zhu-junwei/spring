@@ -8,6 +8,9 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import java.util.List;
 
+/**
+ * @author 朱俊伟
+ */
 public class JdbcTemplateDem01 {
     public static void main(String[] args) {
         //准备数据源

@@ -13,6 +13,7 @@ import javax.annotation.Resource;
  * 账户的业务层实现类
  * <p>
  * 事务的控制应该都在业务层
+ * @author 朱俊伟
  */
 @Service("accountService")
 @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)//只读型事务

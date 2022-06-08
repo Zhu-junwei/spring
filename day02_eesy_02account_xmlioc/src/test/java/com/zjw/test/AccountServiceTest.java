@@ -26,21 +26,15 @@ public class AccountServiceTest {
 
     @Test
     public void testFindAll(){
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
-
-        //执行方法
         List<Account> accountList = accountService.findAllAccount();
-        testFindAccountById();
         for (Account account : accountList) {
             System.out.println(account);
         }
-
     }
 
     @Test
     public void testFindAccountById(){
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
         Account account = accountService.findAccountById(1);
         System.out.println(account);
@@ -49,9 +43,7 @@ public class AccountServiceTest {
 
     @Test
     public void testSaveAccount(){
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
-
         Account account = new Account();
         account.setId(7);
         account.setName("abc");
@@ -62,20 +54,16 @@ public class AccountServiceTest {
 
     @Test
     public void testUpdateAccount(){
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
         Account account = accountService.findAccountById(1);
         System.out.println(account);
         account.setMoney(888F);
         accountService.updateAccount(account);
-
     }
 
     @Test
     public void testDeleteAccount(){
-        //2、得到业务层对象
         IAccountService accountService = ac.getBean("accountService", IAccountService.class);
         accountService.deleteAccount(7);
-
     }
 }

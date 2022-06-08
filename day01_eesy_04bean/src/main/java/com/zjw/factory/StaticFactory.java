@@ -1,11 +1,14 @@
 package com.zjw.factory;
 
-import com.zjw.service.IAccountService;
-import com.zjw.service.impl.AccountServiceImpl;
+import com.zjw.service.IAccountServiceThree;
+import com.zjw.service.impl.AccountServiceThreeImpl;
 
+/**
+ * @author 朱俊伟
+ */
 public class StaticFactory {
 
-    public static IAccountService getAccountService(){
-        return new AccountServiceImpl();
+    public static IAccountServiceThree getAccountService(){
+        return new AccountServiceThreeImpl();
     }
 }
