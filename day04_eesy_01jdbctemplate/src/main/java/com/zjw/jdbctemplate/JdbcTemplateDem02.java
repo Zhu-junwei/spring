@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  * JdbcTemplate的最基本用法
- * @author 朱俊伟
+ * @author zjw
  */
 public class JdbcTemplateDem02 {
     public static void main(String[] args) {

@@ -13,7 +13,7 @@ import java.sql.SQLException;
 /**
  * JdbcTemplate的CRUD操作
  *
- * @author 朱俊伟
+ * @author zjw
  */
 public class JdbcTemplateDem03 {
     public static void main(String[] args) {

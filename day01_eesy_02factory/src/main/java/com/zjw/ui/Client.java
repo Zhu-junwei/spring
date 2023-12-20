@@ -6,7 +6,7 @@ import com.zjw.service.IAccountService;
 /**
  * 模拟一个表现层，用于调用业务层
  * 通过工厂类创建对象，需要创建的对象放在配置中间中
- * @author 朱俊伟
+ * @author zjw
  */
 public class Client {
 

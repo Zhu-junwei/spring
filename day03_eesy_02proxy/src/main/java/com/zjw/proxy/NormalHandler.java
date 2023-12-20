@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 /**
  * 用于提供增强的代码
- * @author 朱俊伟
+ * @author zjw
  */
 public class NormalHandler implements InvocationHandler {
 

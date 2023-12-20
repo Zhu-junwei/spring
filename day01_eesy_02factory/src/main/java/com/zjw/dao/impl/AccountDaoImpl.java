@@ -4,7 +4,7 @@ import com.zjw.dao.IAccountDao;
 
 /**
  * 账户的持久层实现类
- * @author 朱俊伟
+ * @author zjw
  */
 public class AccountDaoImpl implements IAccountDao {
 

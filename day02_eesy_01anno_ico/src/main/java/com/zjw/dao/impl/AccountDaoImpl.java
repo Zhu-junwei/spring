@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * 账户的持久层实现类
- * @author 朱俊伟
+ * @author zjw
  */
 @Repository("accountDao1")
 public class AccountDaoImpl implements IAccountDao {

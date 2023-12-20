@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * spring的配置类，相当于bean.xml
- * @author 朱俊伟
+ * @author zjw
  */
 @Configuration
 @ComponentScan("com.zjw")

@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 
 /**
- * @author 朱俊伟
+ * @author zjw
  */
 public class JdbcDaoSupport {
 

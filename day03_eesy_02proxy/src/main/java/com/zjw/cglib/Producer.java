@@ -2,7 +2,7 @@ package com.zjw.cglib;
 
 /**
  * 一个生产者
- * @author 朱俊伟
+ * @author zjw
  */
 public class Producer {
 

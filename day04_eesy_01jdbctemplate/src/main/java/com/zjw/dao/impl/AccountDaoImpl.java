@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @author 朱俊伟
+ * @author zjw
  */
 @Repository
 public class AccountDaoImpl implements IAccountDao {

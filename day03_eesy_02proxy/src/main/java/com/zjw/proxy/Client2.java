@@ -4,7 +4,7 @@ import java.lang.reflect.Proxy;
 
 /**
  * 模拟一个消费者
- * @author 朱俊伟
+ * @author zjw
  */
 public class Client2 {
     public static void main(String[] args) {

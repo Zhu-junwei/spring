@@ -4,7 +4,7 @@ import com.zjw.service.IAccountServiceTwo;
 import com.zjw.service.impl.AccountServiceTwoImpl;
 
 /**
- * @author 朱俊伟
+ * @author zjw
  */
 public class InstanceFactory {
 

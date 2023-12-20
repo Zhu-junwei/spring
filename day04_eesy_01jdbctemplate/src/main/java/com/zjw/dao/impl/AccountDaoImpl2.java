@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import java.util.List;
 
 /**
- * @author 朱俊伟
+ * @author zjw
  */
 public class AccountDaoImpl2 extends JdbcDaoSupport implements IAccountDao {
 

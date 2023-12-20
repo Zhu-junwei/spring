@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import java.util.List;
 
 /**
- * @author 朱俊伟
+ * @author zjw
  */
 public class AccountDaoImpl extends JdbcDaoSupport implements IAccountDao {
 

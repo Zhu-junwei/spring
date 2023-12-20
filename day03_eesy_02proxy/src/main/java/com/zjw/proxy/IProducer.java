@@ -1,7 +1,7 @@
 package com.zjw.proxy;
 
 /**
- * @author 朱俊伟
+ * @author zjw
  */
 public interface IProducer {
 

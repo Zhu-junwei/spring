@@ -5,7 +5,7 @@ import com.zjw.service.IAccountServiceThree;
 /**
  * 账户的业务层实现类
  * 第三种方式：使用工厂中的静态方法创建对象（使用某个类中的静态方法创建对象，并存入spring）
- * @author 朱俊伟
+ * @author zjw
  */
 public class AccountServiceThreeImpl implements IAccountServiceThree {
 

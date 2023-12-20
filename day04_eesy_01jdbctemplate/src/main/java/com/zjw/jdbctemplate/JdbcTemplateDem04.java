@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * JdbcTemplate的最基本用法
- * @author 朱俊伟
+ * @author zjw
  */
 public class JdbcTemplateDem04 {
     public static void main(String[] args) {

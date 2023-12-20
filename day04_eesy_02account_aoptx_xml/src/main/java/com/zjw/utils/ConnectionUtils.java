@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 
 /**
- * @author 朱俊伟
+ * @author zjw
  */
 public class ConnectionUtils {
 

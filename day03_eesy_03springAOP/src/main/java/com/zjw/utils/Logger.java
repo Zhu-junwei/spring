@@ -2,7 +2,7 @@ package com.zjw.utils;
 
 /**
  * 用于记录日志的工具类，它里面提供了公共的代码
- * @author 朱俊伟
+ * @author zjw
  */
 public class Logger {
 

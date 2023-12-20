@@ -9,7 +9,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import java.util.List;
 
 /**
- * @author 朱俊伟
+ * @author zjw
  */
 public class JdbcTemplateDem01 {
     public static void main(String[] args) {

@@ -1,7 +1,7 @@
 package com.zjw.domain;
 
 /**
- * @author 朱俊伟
+ * @author zjw
  */
 public class Life {
     public Life(){

@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 
 /**
  * 模拟一个消费者
- * @author 朱俊伟
+ * @author zjw
  */
 public class Client {
     public static void main(String[] args) {

@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * 账户的实体类
- * @author 朱俊伟
+ * @author zjw
  */
 @Getter @Setter
 @ToString

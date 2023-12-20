@@ -4,7 +4,7 @@ import com.zjw.domain.Account;
 
 /**
  * 账户的持久层接口
- * @author 朱俊伟
+ * @author zjw
  */
 public interface IAccountDao {
 

@@ -5,7 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * 模拟一个表现层，用于调用业务层
- * @author 朱俊伟
+ * @author zjw
  */
 public class Client {
 

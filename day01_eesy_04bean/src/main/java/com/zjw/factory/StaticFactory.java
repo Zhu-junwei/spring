@@ -4,7 +4,7 @@ import com.zjw.service.IAccountServiceThree;
 import com.zjw.service.impl.AccountServiceThreeImpl;
 
 /**
- * @author 朱俊伟
+ * @author zjw
  */
 public class StaticFactory {
 

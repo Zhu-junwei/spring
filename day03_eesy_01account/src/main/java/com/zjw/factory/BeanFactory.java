@@ -8,7 +8,7 @@ import java.lang.reflect.Proxy;
 
 /**
  * 用于创建service的代理对象的工厂
- * @author 朱俊伟
+ * @author zjw
  */
 public class BeanFactory {
 

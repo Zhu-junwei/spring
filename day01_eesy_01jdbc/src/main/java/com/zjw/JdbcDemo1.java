@@ -3,7 +3,7 @@ package com.zjw;
 import java.sql.*;
 
 /**
- * @author 朱俊伟
+ * @author zjw
  */
 public class JdbcDemo1 {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {

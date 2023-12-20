@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Scope;
 import javax.sql.DataSource;
 
 /**
- * @author 朱俊伟
+ * @author zjw
  */
 public class JdbcConfig {
 

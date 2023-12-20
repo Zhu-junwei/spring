@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 
 /**
  * 和事务相关的配置类
- * @author 朱俊伟
+ * @author zjw
  */
 public class TransactionConfig {
 
