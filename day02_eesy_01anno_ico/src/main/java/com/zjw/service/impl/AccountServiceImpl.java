@@ -2,13 +2,12 @@ package com.zjw.service.impl;
 
 import com.zjw.dao.IAccountDao;
 import com.zjw.service.IAccountService;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
 
 /*
  * 曾经XML的配置
@@ -83,7 +82,7 @@ import javax.annotation.Resource;
  * @author zjw
  */
 @Component("accountService")
-@Scope(value = "singleton")
+@Scope(value = "singleton") //默认也是单例
 public class AccountServiceImpl implements IAccountService {
 
 //    @Autowired

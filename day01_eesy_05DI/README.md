@@ -1,3 +1,11 @@
+[toc]
+
+# Spring中的依赖注入DI
+
+> 依赖注入的简单理解就是给对象设置变量值。
+
+Spring配置文件
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -118,3 +126,137 @@
     </bean>
 
 </beans>
+```
+
+AccountServiceImpl
+```java
+package com.zjw.service.impl;
+
+import com.zjw.service.IAccountService;
+import lombok.ToString;
+
+import java.util.Date;
+
+/**
+ * 账户的业务层实现类
+ * @author zjw
+ */
+@ToString
+public class AccountServiceImpl implements IAccountService {
+
+    private String name;
+    private Integer age;
+    private Date birthday;
+
+    public AccountServiceImpl(String name, Integer age, Date birthday) {
+        this.name = name;
+        this.age = age;
+        this.birthday = birthday;
+    }
+
+    public AccountServiceImpl(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public void saveAccount() {
+        System.out.println("AccountServiceImpl……中的saveAccount方法执行了\n"+this.toString()+"\n");
+    }
+
+}
+```
+
+AccountService2Impl
+```java
+/**
+ * 账户的业务层实现类
+ * @author zjw
+ */
+@Setter
+@ToString
+public class AccountService2Impl implements IAccountService {
+
+    private String name;
+    private Integer age;
+    private Date birthday;
+
+    @Override
+    public void saveAccount() {
+        System.out.println("AccountService2Impl……中的saveAccount方法执行了\n"+ this + "\n");
+    }
+    
+}
+```
+
+AccountService3Impl
+```java
+/**
+ * 账户的业务层实现类
+ * @author zjw
+ */
+@Setter
+public class AccountService3Impl implements IAccountService {
+
+    private String[] myStrs;
+    private List<String> myList;
+    private Set<String> mySet;
+    private Map<String,String> myMap;
+    private Properties myProps;
+    
+    @Override
+    public void saveAccount() {
+        System.out.println("accountService中的saveAccount方法执行了");
+        System.out.println("数组myStrs: " + Arrays.toString(myStrs));
+        System.out.println("List集合myList：" + myList);
+        System.out.println("Set集合：" + mySet);
+        System.out.println("Map集合：" + myMap);
+        System.out.println("Properties：" + myProps);
+    }
+}
+```
+
+测试
+```java
+/**
+ * 模拟一个表现层，用于调用业务层
+ */
+public class Client {
+
+    public static void main(String[] args) {
+
+        //1.获取核心容器对象
+        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+
+        System.out.println("*****accountService1……通过构造方法依赖注入*****");
+        IAccountService accountService1 = (IAccountService) ac.getBean("accountService1");
+        accountService1.saveAccount();
+
+        System.out.println("*****accountService2……通过setter方法依赖注入*****");
+        IAccountService accountService2 = (IAccountService) ac.getBean("accountService2");
+        accountService2.saveAccount();
+
+        System.out.println("*****accountService3……复杂类型的注入/集合类型的注入*****");
+        IAccountService accountService3 = (IAccountService) ac.getBean("accountService3");
+        accountService3.saveAccount();
+    }
+}
+```
+结果
+```
+*****accountService1……通过构造方法依赖注入*****
+AccountServiceImpl……中的saveAccount方法执行了
+AccountServiceImpl(name=aaa, age=25, birthday=Wed Dec 20 20:54:53 CST 2023)
+
+*****accountService2……通过setter方法依赖注入*****
+AccountService2Impl……中的saveAccount方法执行了
+AccountService2Impl(name=zjw, age=18, birthday=Wed Dec 20 20:54:53 CST 2023)
+
+*****accountService3……复杂类型的注入/集合类型的注入*****
+accountService中的saveAccount方法执行了
+数组myStrs: [aaa, bbb, ccc]
+List集合myList：[list1, bbb, ccc]
+Set集合：[set1, bbb, ccc]
+Map集合：{testA=aaa, testB=BBB}
+Properties：{testD=DD, testC=CC}
+```

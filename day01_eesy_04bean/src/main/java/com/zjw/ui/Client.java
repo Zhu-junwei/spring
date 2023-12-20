@@ -26,7 +26,7 @@ public class Client {
         System.out.println(accountServiceTwo);
         accountServiceTwo.saveAccount();
 
-        //第二种方式：使用普通工厂中的方法创建对象
+        //第三种方式：使用工厂中的静态方法创建对象
         IAccountServiceThree accountServiceThree= ac.getBean("accountServiceThree", IAccountServiceThree.class);
         System.out.println(accountServiceThree);
         accountServiceThree.saveAccount();

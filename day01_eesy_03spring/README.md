@@ -1,10 +1,60 @@
-package com.zjw.ui;
+# Spring容器管理对象
 
-import com.zjw.dao.impl.AccountDaoImpl;
-import com.zjw.service.IAccountService;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+## 依赖
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.zjw</groupId>
+    <artifactId>day01_eesy_03spring</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <!--解决pom变更后Language level、target bytecode version变更-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <encoding>UTF-8</encoding>
+        <spring.version>6.1.1</spring.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
+```
+
+添加Spring配置文件
+
+> bean.xml放在resources目录下
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 把对象的创建交给spring来管理，scope=="prototype"表示多例 -->
+    <bean id="accountService" class="com.zjw.service.impl.AccountServiceImpl" scope="prototype"/>
+    <bean id="accountDao" class="com.zjw.dao.impl.AccountDaoImpl"/>
+
+</beans>
+```
+
+# 测试
+```java
 /**
  * 模拟一个表现层，用于调用业务层
  * @author zjw
@@ -49,3 +99,4 @@ public class Client {
 
     }
 }
+```
