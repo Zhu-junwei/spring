@@ -1,6 +1,7 @@
 package com.zjw.utils;
 
 /**
+ * 作为切面
  * 用于记录日志的工具类，它里面提供了公共的代码
  * @author zjw
  */
