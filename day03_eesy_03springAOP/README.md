@@ -33,7 +33,7 @@ pom.xml
         <maven.compiler.target>17</maven.compiler.target>
         <encoding>UTF-8</encoding>
         <spring.version>6.1.1</spring.version>
-        <aspectjweaver-version>1.9.19</aspectjweaver-version>
+        <aspectjweaver.version>1.9.19</aspectjweaver.version>
     </properties>
 
     <dependencies>
@@ -46,7 +46,7 @@ pom.xml
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>${aspectjweaver-version}</version>
+            <version>${aspectjweaver.version}</version>
         </dependency>
     </dependencies>
 
