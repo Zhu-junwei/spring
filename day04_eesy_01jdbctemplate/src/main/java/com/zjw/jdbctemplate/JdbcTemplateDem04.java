@@ -16,6 +16,7 @@ public class JdbcTemplateDem04 {
         ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
         //2、获取对象
         IAccountDao accountDao = ac.getBean("accountDao", IAccountDao.class);
+//        IAccountDao accountDao = ac.getBean("accountDao2", IAccountDao.class);
         Account account = accountDao.findAccountById(1);
         System.out.println(account);
 //        account.setMoney(3000F);
