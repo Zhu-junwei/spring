@@ -3,13 +3,12 @@ package com.zjw.dao.impl;
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.utils.ConnectionUtils;
-import lombok.Setter;
+import jakarta.annotation.Resource;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -19,11 +18,9 @@ import java.util.List;
 @Repository("accountDao")
 public class AccountDaoImpl implements IAccountDao {
 
-    @Setter
     @Resource
     private QueryRunner runner;
 
-    @Setter
     @Resource
     private ConnectionUtils connectionUtils;
 

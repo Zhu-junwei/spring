@@ -1,9 +1,8 @@
 package com.zjw.utils;
 
-import lombok.Setter;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.Connection;
 
@@ -14,7 +13,6 @@ import java.sql.Connection;
 public class ConnectionUtils {
     private ThreadLocal<Connection> tl = new ThreadLocal<Connection>();
 
-    @Setter
     @Resource
     private DataSource dataSource;
 

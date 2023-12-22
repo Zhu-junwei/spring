@@ -1,11 +1,11 @@
 package com.zjw.utils;
 
-import lombok.Setter;
+import jakarta.annotation.Resource;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.Resource;
 
 /**
  * 和事务管理相关的工具类，它包含了，开启事务，提交事务，回滚事务和释放连接
@@ -15,7 +15,6 @@ import javax.annotation.Resource;
 @Aspect
 public class TransactionManager {
 
-    @Setter
     @Resource
     private ConnectionUtils connectionUtils;
 
