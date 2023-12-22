@@ -2,7 +2,7 @@ package com.zjw.test;
 
 import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
-import config.SpringConfiguration;
+import com.zjw.config.SpringConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

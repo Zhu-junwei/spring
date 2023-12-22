@@ -1,4 +1,4 @@
-package config;
+package com.zjw.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.apache.commons.dbutils.QueryRunner;
@@ -28,8 +28,8 @@ public class JdbcConfig {
 
     /**
      * 用于创建一个QueryRunner对象
-     * @param dataSource
-     * @return
+     * @param dataSource 数据源对象
+     * @return QueryRunner对象
      */
     @Bean(name = "runner")
     @Scope(value = "prototype")
@@ -38,8 +38,7 @@ public class JdbcConfig {
     }
 
     /**
-     *
-     * @return
+     * 创建数据源对象
      */
     @Bean("dataSource")
     public DataSource createDataSource(){
