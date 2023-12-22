@@ -11,9 +11,9 @@ import java.util.List;
  * 账户的业务层实现类
  * @author zjw
  */
+@Setter
 public class AccountServiceImpl implements IAccountService {
 
-    @Setter
     private IAccountDao accountDao;
 
     @Override

@@ -2,7 +2,6 @@ package com.zjw.dao.impl;
 
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
-import lombok.Getter;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -14,10 +13,16 @@ import java.util.List;
  * 账户的持久层实现类
  * @author zjw
  */
+//@Getter
 public class AccountDaoImpl implements IAccountDao {
 
-    @Getter
     private QueryRunner runner;
+
+    // 虽然有get方法，但是并不会执行，而是由容器提供一个动态代理的实现
+    public QueryRunner getRunner() {
+        System.out.println("getRunner方法执行....");
+        return runner;
+    }
 
     @Override
     public List<Account> findAllAccount() {
