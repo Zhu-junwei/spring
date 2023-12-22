@@ -3,11 +3,10 @@ package com.zjw.service.impl;
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
 
 /**
  * 账户的业务层实现类
@@ -43,7 +42,7 @@ public class AccountServiceImpl implements IAccountService {
         //2.5、更新转出账户
         accountDao.updateAccount(source);
 
-//        int i = 1 / 0;
+        int i = 1 / 0;
 
         //2.6、更新转入账户
         accountDao.updateAccount(target);
