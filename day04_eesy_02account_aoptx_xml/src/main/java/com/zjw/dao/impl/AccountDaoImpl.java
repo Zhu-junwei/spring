@@ -14,11 +14,10 @@ import java.util.List;
  * 账户的持久层实现类
  * @author zjw
  */
+@Setter
 public class AccountDaoImpl implements IAccountDao {
 
-    @Setter
     private QueryRunner runner;
-    @Setter
     private ConnectionUtils connectionUtils;
 
     @Override
