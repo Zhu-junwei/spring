@@ -3,11 +3,10 @@ package com.zjw.service.impl;
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
 
 /**
  * 账户的业务层实现类

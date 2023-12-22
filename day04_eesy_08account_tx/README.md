@@ -1,8 +1,10 @@
-# Spring基于注解的事务管理
+[toc]
 
-[源码](https://github.com/Zhu-junwei/spring/tree/master/day04_eesy_06tx_anno)
+# Spring编程式事务控制
 
-## 代码测试
+> 实际中很少使用
+
+## 代码实现
 
 pom.xml
 ```xml
@@ -13,20 +15,8 @@ pom.xml
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zjw</groupId>
-    <artifactId>day04_eesy_06tx_anno</artifactId>
+    <artifactId>day04_eesy_08account_tx</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>17</source>
-                    <target>17</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
     <packaging>jar</packaging>
 
     <properties>
@@ -37,9 +27,9 @@ pom.xml
         <maven.compiler.target>17</maven.compiler.target>
         <encoding>UTF-8</encoding>
         <spring.version>6.1.1</spring.version>
-        <jakarta.version>2.1.0</jakarta.version>
         <mysql.version>8.0.33</mysql.version>
         <junit.version>4.13.2</junit.version>
+        <lombok.version>1.18.30</lombok.version>
         <aspectjweaver.version>1.9.21</aspectjweaver.version>
     </properties>
 
@@ -70,14 +60,15 @@ pom.xml
             <version>${mysql.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-            <version>${jakarta.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectjweaver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -89,30 +80,21 @@ pom.xml
 
 </project>
 ```
-
 Spring配置文件
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="
-        http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd
-        http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--配置spring创建容器时要扫描的包-->
-    <context:component-scan base-package="com.zjw"/>
-
-    <!--配置JdbcTemplate-->
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    <!--配置业务层-->
+    <bean id="accountService" class="com.zjw.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+        <property name="transactionTemplate" ref="transactionTemplate"/>
+    </bean>
+    <!--配置账户的持久层-->
+    <bean id="accountDao" class="com.zjw.dao.impl.AccountDaoImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
@@ -124,21 +106,15 @@ Spring配置文件
         <property name="password" value="123456"/>
     </bean>
 
-    <!--spring中基于XML的声明式事务控制配置步骤
-        1、配置事务管理器
-        2、开启spring对注解事务的支持
-        3、在需要事务支持的地方使用@Transactional注解
-    -->
     <!--配置事务管理器-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!--开启spring对注解事务的支持
-        transaction-manager="transactionManager" 默认
-    -->
-    <tx:annotation-driven/>
-
+    <!--配置事务模板对象-->
+    <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
 </beans>
 ```
 Service层
@@ -148,10 +124,10 @@ package com.zjw.service.impl;
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
-import jakarta.annotation.Resource;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
+import lombok.Setter;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 
 /**
  * 账户的业务层实现类
@@ -159,38 +135,53 @@ import org.springframework.transaction.annotation.Transactional;
  * 事务的控制应该都在业务层
  * @author zjw
  */
-@Service("accountService")
-@Transactional(propagation = Propagation.SUPPORTS,readOnly = true)//只读型事务
 public class AccountServiceImpl implements IAccountService {
 
-    @Resource
+    @Setter
     private IAccountDao accountDao;
+
+    @Setter
+    private TransactionTemplate transactionTemplate ;
 
     @Override
     public Account findAccountById(Integer accountId) {
-        return accountDao.findAccountById(accountId);
+        return transactionTemplate.execute(new TransactionCallback<Account>() {
+            @Override
+            public Account doInTransaction(TransactionStatus status) {
+                return accountDao.findAccountById(accountId);
+            }
+        });
+
     }
 
-    @Transactional(propagation = Propagation.REQUIRED,readOnly = false)//只读型事务
+    /**
+     * 声明式事务控制，代码太不优雅
+     */
     @Override
     public void transfer(String sourceName, String targetName, Float money) {
+        transactionTemplate.execute(new TransactionCallback<Object>() {
+            @Override
+            public Object doInTransaction(TransactionStatus status) {
+                //2、执行操作
+                //2.1、根据名称查询转出账户
+                Account source = accountDao.findAccountByName(sourceName);
+                //2.2、根据名称查询转入账户
+                Account target = accountDao.findAccountByName(targetName);
+                //2.3、转出账户减钱
+                source.setMoney(source.getMoney() - money);
+                //2.4、转入账户加钱
+                target.setMoney(target.getMoney() + money);
+                //2.5、更新转出账户
+                accountDao.updateAccount(source);
 
-        //2、执行操作
-        //2.1、根据名称查询转出账户
-        Account source = accountDao.findAccountByName(sourceName);
-        //2.2、根据名称查询转入账户
-        Account target = accountDao.findAccountByName(targetName);
-        //2.3、转出账户减钱
-        source.setMoney(source.getMoney() - money);
-        //2.4、转入账户加钱
-        target.setMoney(target.getMoney() + money);
-        //2.5、更新转出账户
-        accountDao.updateAccount(source);
+                int i = 1 / 0;
 
-        int i = 1 / 0;
+                //2.6、更新转入账户
+                accountDao.updateAccount(target);
+                return null;
+            }
+        });
 
-        //2.6、更新转入账户
-        accountDao.updateAccount(target);
 
     }
 }
@@ -203,31 +194,26 @@ package com.zjw.dao.impl;
 
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
-import jakarta.annotation.Resource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import java.util.List;
 
 /**
  * @author zjw
  */
-@Repository("accountDao")
-public class AccountDaoImpl implements IAccountDao {
+public class AccountDaoImpl extends JdbcDaoSupport implements IAccountDao {
 
-    @Resource
-    private JdbcTemplate jdbcTemplate;
 
     @Override
     public Account findAccountById(Integer accountId) {
-        List<Account> accounts = jdbcTemplate.query("SELECT * FROM account WHERE id=?", new BeanPropertyRowMapper<Account>(Account.class),accountId);
+        List<Account> accounts = getJdbcTemplate().query("SELECT * FROM account WHERE id=?", new BeanPropertyRowMapper<Account>(Account.class),accountId);
         return accounts.isEmpty()?null:accounts.get(0);
     }
 
     @Override
     public Account findAccountByName(String accountName) {
-        List<Account> accounts = jdbcTemplate.query("SELECT * FROM account WHERE name=?", new BeanPropertyRowMapper<Account>(Account.class),accountName);
+        List<Account> accounts = getJdbcTemplate().query("SELECT * FROM account WHERE name=?", new BeanPropertyRowMapper<Account>(Account.class),accountName);
         if (accounts.isEmpty()){
             return null;
         }
@@ -239,24 +225,26 @@ public class AccountDaoImpl implements IAccountDao {
 
     @Override
     public void updateAccount(Account account) {
-        jdbcTemplate.update("UPDATE account SET name=?,money=? WHERE id=?",account.getName(),account.getMoney(),account.getId());
+        getJdbcTemplate().update("UPDATE account SET name=?,money=? WHERE id=?",account.getName(),account.getMoney(),account.getId());
     }
 }
 
 ```
-
-
 ## 测试
 
 ```java
 package com.zjw.test;
 
+import com.zjw.domain.Account;
 import com.zjw.service.IAccountService;
-import jakarta.annotation.Resource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 /**
  * 使用Junit单元测试：测试我们的配置
@@ -265,7 +253,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = "classpath:bean.xml")
 public class AccountServiceTest {
 
-    @Resource
+    @Autowired
     private IAccountService as;
 
     @Test

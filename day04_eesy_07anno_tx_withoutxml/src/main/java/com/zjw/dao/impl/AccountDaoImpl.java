@@ -2,11 +2,11 @@ package com.zjw.dao.impl;
 
 import com.zjw.dao.IAccountDao;
 import com.zjw.domain.Account;
+import jakarta.annotation.Resource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**

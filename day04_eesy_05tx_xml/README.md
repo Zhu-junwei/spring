@@ -1,6 +1,6 @@
 # Spring基于XML的事务管理器DataSourceTransactionManager
 
-[源码](https://github.com/Zhu-junwei/spring/tree/master/day04_eesy_04tx_xml)
+[源码](https://github.com/Zhu-junwei/spring/tree/master/day04_eesy_05tx_xml)
 
 ## 代码测试
 

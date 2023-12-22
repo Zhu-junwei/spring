@@ -33,6 +33,9 @@ public class AccountServiceImpl implements IAccountService {
 
     }
 
+    /**
+     * 声明式事务控制，代码太不优雅
+     */
     @Override
     public void transfer(String sourceName, String targetName, Float money) {
         transactionTemplate.execute(new TransactionCallback<Object>() {
