@@ -274,3 +274,11 @@ public class AccountServiceTest {
     }
 }
 ```
+
+# Spring中事务失效的场景
+
+- 异常捕获处理，自己处理了异常，没有抛出，解决:手动抛出
+
+- 抛出了受检查异常，但是Spring默认只会回滚RuntimeException，解决:需要配置rollbackFor属性为Exception
+
+- 非public方法导致的事务失效，解决:改为public
