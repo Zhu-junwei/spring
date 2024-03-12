@@ -22,7 +22,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <encoding>UTF-8</encoding>
-        <spring.version>6.1.1</spring.version>
+        <spring.version>6.1.4</spring.version>
     </properties>
 
     <dependencies>

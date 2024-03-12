@@ -24,7 +24,7 @@ pom.xml
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <encoding>UTF-8</encoding>
-        <spring.version>6.1.1</spring.version>
+        <spring.version>6.1.4</spring.version>
         <mysql.version>8.0.33</mysql.version>
         <dbutils.version>1.7</dbutils.version>
         <c3p0.version>0.9.1.2</c3p0.version>
